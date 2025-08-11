@@ -1,1 +1,45 @@
-IAM is a global service.
+IAM
+- It is a global service.
+
+USERS 
+- People within organization.
+
+GROUP
+- Collection of users.
+- Only contains users and not other groups.
+- A user can belong to multiple groups.
+
+POLICY
+- Used to define permissions for user or groups.
+- Is inherited by all users in a group.
+
+USER ACCESS
+- Console 
+- CLI 
+    - requires access key and secret access key
+    - CLI is installed on the user's machine.
+    - 
+- SDK
+    - requires access key and secret access key
+    - Is embedded within application.
+
+ACCESS KEYS
+- IAM/Users/abc/access-key
+- Commands
+    - aws configure
+        Enter  AWS access key ID:
+        Enter AWS secret access key:
+
+
+CLOUD SHELL
+- Not available in all regions.
+- No user access key or secret access key required.
+
+IAM ROLE
+- Similar to service-account in GCP.
+- Used to delegate access to AWS services.
+
+IAM SECURITY TOOLS
+- IAM credentials report
+- IAM access advisor
+
