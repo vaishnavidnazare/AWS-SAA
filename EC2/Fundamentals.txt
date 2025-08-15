@@ -1,0 +1,102 @@
+Budgets 
+    - Budgets in AWS are used to track and manage costs. They can be set up to track costs for a specific account.
+
+EC2(Elastic Compute Cloud)
+    - AMI is the software configuration
+    - Instance types are the hardware configurations
+    - Key pairs are used for SSH access
+    - Security groups are used to control incoming and outgoing traffic
+    - Snapshots are used to backup and restore instances
+    - Auto Scaling is used to automatically add or remove instances based on demand
+
+
+EC2 Instance Types 
+    - General purpose: t2.micro, t2.small
+    - Compute optimized: c4.large, c4.xlarge
+    - Memory optimized: r4.large, r4.xlarge
+    - Storage optimized: i3.large, i3.xlarge
+    - GPU optimized: p2.large, p2.xlarge
+
+    - T2 instances are burstable, meaning they can burst to a higher CPU for a short period. They have a balance between compute, memory and networking. 
+    - C4 instances are optimized for compute-intensive workloads
+    - R4 instances are optimized for memory-intensive workloads
+    - I3 instances are optimized for storage-intensive workloads
+    - P2 instances are optimized for GPU-intensive workloads
+
+    - For instance comparison , we can use [instances.vantage.sh]
+
+
+Security Groups
+    - Security groups are used to control incoming and outgoing traffic to instances.
+    - Security groups are stateful, meaning that if an instance sends traffic to another instance, the response traffic is allowed back in.
+    - Security groups only contains allow rules, not deny rules.
+    - Security groups can be attached to multiple instances and are locked to a specific VPC/region.
+    - If your application is not accessible (timeout) , it is a security group issue.
+    - If your application gives connection refused error, then its an application issue.
+
+    Ports To remember
+    - 22 for SSH
+    - 80 for HTTP
+    - 443 for HTTPS
+    - 21 for FTP
+    - 22 for SFTP
+    - 3389 for RDP
+    - 5432 for PostgreSQL
+    - 3306 for MySQL
+    - 1521 for Oracle
+    - 27017 for MongoDB
+
+SSH
+    - SSH stands for Secure Shell
+    - It is a secure way to access a remote server
+    - SSH uses public key cryptography to authenticate the user and encrypt the data.
+    - SSH is supported in Mac, linux and windows version 10 and above.
+    - Putty is a windows client for SSH.
+    - SSH keys are used to authenticate users and grant access to instances.
+    - We also have EC2 instance connect which is a browser based SSH client.
+    - EC2 instance connect supports windows, mac and linux.
+    - Instance must have a supported AMI with EC2 Instance Connect package installed 
+
+    - How to connect to EC2 instance using SSH
+        - Open terminal
+        - Type ssh -i "path to pem file" "username@public ip"
+        - Type yes to accept the host key
+        - Type password to login to the instance
+        - Make sure the instance has security group attached with SSH rule.
+        - When you SSH into an EC2 instance, the username you use depends on the Linux distribution (AMI) the instance is running. AWS defines default usernames for popular AMIs. Here are some common defaults:
+
+            AMI Type	                            Default SSH Username
+            Amazon Linux 2 / Amazon Linux AMI	      ec2-user
+            Ubuntu AMI	                              ubuntu
+            CentOS AMI	                              centos or ec2-user
+            Debian AMI	                              admin
+            Fedora AMI	                              fedora or ec2-user
+            Red Hat Enterprise Linux (RHEL) AMI	      ec2-user or root
+            SUSE AMI	                              ec2-user or root
+            Oracle AMI	                              ec2-user
+            Bitnami AMI	                              bitnami
+
+
+    - How to connect to EC2 instance using EC2 instance connect
+        - Go to EC2 dashboard
+        - Select the instance
+        - Click on connect
+        - Select the browser based SSH client
+        - Select the username and password
+        - Click on connect
+        - Do not enter your access key or secret key in the browser based SSH client as it will be saved in the browser history.
+        - Instead attach the IAM role to instance and use the role to connect to the instance.
+
+EC2 instance purchasing options
+    - On demand instances - you pay as you go.
+    - Reserved instances - you pay a lower price for a one or three year commitment.
+    - Spot instances - Define max spot price and get the instance while the price is below the max spot price. 
+        - Spot block - you can block the spot instances for a certain period of time. 
+    - Dedicated hosts - you get a physical server dedicated to your use.
+    - Dedicated instances - you get a virtual private server dedicated to your use.
+    - Spot fleet - you can request a collection of spot instances with a single request.
+    - Capacity reservations - you can reserve a certain amount of capacity for a certain amount of time.
+
+
+
+
