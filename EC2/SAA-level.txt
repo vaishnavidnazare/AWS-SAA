@@ -1,0 +1,26 @@
+Private IP vs Public IP vs Elastic IP
+    - Private IP: Assigned to EC2 instances within a VPC, not accessible from the internet
+    - Public IP: Assigned to EC2 instances, accessible from the internet
+    - Elastic IP: A static public IP address that can be assigned to an EC2 instance, can be transferred between instances, and can be used to route traffic to a load balancer or other resources.
+
+Placement Groups    
+    - Control over the EC2 instance placement strategy.
+    - Strategies
+        - Clusters : Clusters instances into a low latency group in a single Availability Zone.
+        - Spread : Spread instances across underlying hardware to minimize the risk of correlated failures.(max 7 instances per group per AZ)
+        - Partition : Partition instances into groups to minimize the risk of correlated failures.(scales to 100s of instances per group)
+
+
+Elastic Network Interfaces (ENIs)
+    - Virtual Network Card 
+    - Can be attached to multiple instances.
+    - ENIs enable EC2 instances to connect to networks, allowing secure communication between resources within a VPC or to external networks.
+
+
+EC2 Hybernate
+    - A feature that allows EC2 instances to pause and resume their operation.
+    - The instance is stopped and the memory is saved to a snapshot.
+    - The instance can be resumed from the snapshot, and the memory is restored to the instance.
+    - RAM saved to disk (root EBS volume)
+    - The root EBS volume must be encrypted.
+    
