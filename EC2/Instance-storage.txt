@@ -1,0 +1,67 @@
+EBS
+    - EBS Volume is a network drive attached to instances.
+    - Allows instances to persist data even after termination
+    - EBS volumes are specific to AZs
+
+
+EBS Snapshots
+    - Backup of volumes to reuse or reattach
+    - We can use ebs volumes across AZs using Snapshots
+    - We can move EBS volume to archive tier which is 75% cheaper but it take 24 to 72 hours to restore that snapshots.
+    - Deleting snapshots stores them in recycle bins 
+    - We can use fast snapshot restore for no latency but it costs more
+
+AMI(Amazon Machine Image)
+    - They are customization of EC2 instances.
+    - They are a package of software configuration, operating system, monitoring tools etc.
+    - We can also build an AMI from EC2 instances, this will also create EBS snapshots.
+
+EC2 Instance store
+    - Use this if we require high performance hardware disk.
+    - They are ephemeral which means, it wil be lost if instance terminated.
+    
+
+EBS Volumes Types
+    - gp2/gp3 (SSD)
+        Balances price and performance for wide variety of workloads
+        1Gib to 16Tib storage
+
+    - io1/io2 Block express (SSD)
+        Highest performance volumes ,low latency and high throughput
+
+    - st1 (HDD)
+        Low cost HDD volume designed for Frequently accessed, throughput intensive workloads
+
+    - sc1 (HDD)
+        Lowest cost HDD volume designed for less frequently accessed workloads
+
+EBS Multi Attach
+    - allows you to attach the same EBS volume to multiple instances in the same AZ.
+    - only available with the io1/io2 volumes
+    - can attach upto 16 instances at a time
+
+EBS Encryption
+    - all teh data inside volume is encrypted
+    - all the data flow between instance and volume is encrypted.
+    - all snapshots are encrypted
+    - all volumes created from snapshots are encrypted
+    - it is handled transparently and we dont need to handle it .
+If a volume is not encrypted its snapshot will not be encrypted, thus we need to create a copy of the snapshot encrypt it and then create another volume out of it.
+We can also create an encrypted volume from the unencrypted snapshot.
+
+
+EFS
+    - Managed Network File System that can be mounted on many EC2 instanes in multi AZ
+    - We need to use security groups to control access to EFS 
+    - They are only compatible with Linux based file systems
+    - They scale automatically
+    - There are different performance and throughput modes.
+    - It has storage tiers as standard, infrequent access and archive 
+    - Lifecycle policy can be used to move files systems between storage tiers
+
+    
+
+
+
+
+
