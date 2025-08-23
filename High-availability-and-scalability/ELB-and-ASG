@@ -76,10 +76,11 @@ ELB- Connection Draining/Deregistration Delay
 Auto Scaling Group
     - To scale up and scale down instances based on load
     - A launch template is used to set the configurations for the instances that will be launched.
-    - Scaling policies can be used to scale up and down instances based on cloudwatch alarms etc.
+    - Scaling policies can be used to scale up and down instances based on cloudwatch alarms.
     - Types
         - Dynamic scaling :
             - Target Tracking scaling
             - Simple/step scaling (Cloudwatch alarm)
         - Scheduled Scaling
         - Predective scaling
+    - We have a cool down period in which ASG will not launch or terminate existing instances (to allow metrics to stabilize)
