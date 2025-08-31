@@ -1,0 +1,61 @@
+RDS (Relational Database Service)
+    - Uses SQL as query language
+    - Allows you to create databases in the cloud which are managed by AWS 
+    - it supports following types of DB's 
+        - Postgres
+        - MySQL
+        - MariaDB
+        - Oracle
+        - Microsoft SQL Server
+        - IBM DB2
+        - Aurora (AWS Proprietary database)
+    - It provides many features like OS patching , backups , monitoring dashboards, Read replicas, Multi AZ setup, Scaling capability (storage autoscaling).
+    - We cannot SSH into RDS instances.
+    - Read replicas can be created ASYNC with main DB to improve read performance.
+        - They can be within AZ, Cross AZ , or Cross Region.
+        - No extra cost for within the region read replicas
+    - Multi AZ
+        - SYNC replication to standby instance
+        - Automatic app failover to standby if master fails
+    - (connect to db using sqlelectron)
+
+RDS Custom
+    - For Oracle and Microsoft SQL server database
+    - Access to OS and database customization
+    - SSH into EC2 instance
+
+Amazon Aurora
+    - Proprietary technology from AWS (Not opensource)
+    - It provides very high performance
+    - Its storage automatically grows in increments
+    - Can have upto 15 read replicas and much faster
+    - its costs 20% more than RDS 
+    - High availability
+    - stores 6 copies of your data across 3 AZ
+    - Self healing 
+    - Cross region replication also supported
+    - Autoscaling for read replicas is available and can be managed by Reader Endpoint.
+    - It also provide Backtracks - to restore data at any period of time without using backups
+    - Advance concepts include Global database , also integration with ML.
+    - Babelfish is used to make commumnication happen between T-SQL and Aurora Postgres-SQL
+    - Automated backups in aurora cannot be disabled as they can be in RDS.
+    - Has a feature of Database cloning
+
+RDS and Aurora Security
+    - Using AWS KMS, TLS certificates, IAM Authentication, Security groups.
+    - RDS and Aurora do not have SSH access , only RDS custom supports it.
+    - Audit Logs can be enabled and sent to cloudwatch.
+
+RDS Proxy
+    - Improve database efficiency by reducing stress on database resources and minimize open connections.
+    - Serverless, autoscaling, high-availability.
+    - Never publicaly accessible
+    
+Elasticcache
+    - Managed Redis or Memcached
+    - In-memory databases with really high performance and low latency.
+    - Help reduce load of databases for read intensive workloads.
+    - Involves heavy application code changes.
+    - Redis can be used not only as a cache but also as a database, message broker, and for complex data operations.
+    - Memcached focuses  mainly on pure caching for fast read/write speed.
+    
