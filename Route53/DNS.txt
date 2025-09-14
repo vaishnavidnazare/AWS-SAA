@@ -1,0 +1,10 @@
+DNS - translates human friendly hostnames to machine target IPs.
+
+Terminologies
+    - Domain Registrar : GoDaddy, Amazon Route 53, etc.
+    - DNS Records : A,AAAA,CNAME, etc.
+    - Zone file : contains dns records.
+    - Name Servers : resolves DNS queries.
+    - Top Level Domain : .com,.in, etc.
+    - Second Level Domain: amazon.com, google,com,etc.
+    

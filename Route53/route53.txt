@@ -1,0 +1,115 @@
+Route53
+    - A highly available, scalable, filly managed and Authoritative DNS.
+
+Record Types
+    - A : maps hostname to IPv4
+    - AAAA : maps hostname to IPv6
+    - CNAME : maps a hostname to another hostname.
+            - cant be created for example.com but can be created for www.example.com
+    - NS : Name Servers for the Hosted Zone.
+
+Hosted Zones
+    - A container for records that define how to route traffic to a domain and its subdomains.
+    - There are Public and Private Hosted Zones.
+    - In AWS you pay $0.50 per month per hosted zone.
+
+TTL(Time to Live)
+    - With High TTL the records are cached and thus lesser traffic goes to Route53 
+    - TTL is mandatory for all records except alias records.
+
+Alias 
+    - points a hostname to an aws resource
+    - works for root-domain as well as non-root-domain
+    - free of charge
+    - Native health check ability
+    - Alias record is always of type A/AAAA for aws resources
+    - TTL cannot be set
+    - Alias records targets can be 
+        - ELB
+        - Cloudfront distributions
+        - API Gateway 
+        - Elastic Beanstalk environments
+        - S3 websites
+        - VPC Interface endpoints
+        - Global accelerator
+        - Route53 record in the same hosted zone
+
+    - You cannot set an alias record for EC2 DNS name.
+
+Routing policies
+    - Defines how route53 responds to DNS queries.
+    - Types
+        - Simple
+        - Weighted
+        - Failover
+        - Latency based
+        - Geolocation
+        - Multivalue Answer
+        - Geoproximity
+
+
+Simple Routing policy
+    - route traffic to a single resource
+    - can specify multiple values in the same record
+    - random one is choosen by the client.
+    - when alias enabled specify only one resource
+    - cant be associated with health checks.
+
+Weighted Routing policy
+    - Control the % of requests that goes to each specific resource.
+    - Assign each record with a relative weight.
+    - DNS records must have the same name and type.
+    - Can be associated with health checks.
+
+Latency based Routing policy
+    - redirect to the resource which has least latency close to us
+    - Can be associated with health checks
+
+Route53 Healthchecks
+    - Automated DNS Failover
+        - Healthchecks that monitor and endpoint.
+        - Healthchecks that monitor other Healthchecks.(calculated Healthchecks)
+        - Healthchecks that monitor a cloudwatch alarm.
+    - Endpoint 
+        - check a particular path eg. \health
+        - If >18% healthcheckers say that endpoint is healthy than rout53 considers it healthy
+        - Healthchecks pass only when the endpoint responds with 2xx or 3xx status code.
+        - we need to configure router/firewall to allow incoming requests from Route53 healthcheckers.
+    - Calculated healthchecks 
+        - combine results of multiple healthchecks into a single healthcheck
+        - You can use 'AND', 'OR' or 'NOT'.
+        - can monitor upto 256 child healthchecks.
+        - specify how many healtchecks need to pass to make the parent pass.
+    - Healthchecks for private hosted endpoints.
+        - Route53 healthcheckers are outside the VPC they cant access private endpoints.
+        - You can create a cloud watch metrics and associate a cloudwatch alarm , and then create a healthcheck that checks the alarm itself. 
+
+Failover Routing policy
+    - We have a primary and a secondary record, if healthcheck of primary fails then secondary record will recieve the route53 requests.
+    
+Geolocation Routing policy
+    - This routing is based on user location.
+    - Specify location by continent, country or state.
+    - Can be associated with healtchecks
+    
+Geoproximity Routing policy
+    - Route traffic to your resources based on the geographic location of users and resources.
+    - ability to shift more traffic to resources based on the defined bias.
+    - higher the bias value more traffic it will recieve.
+
+IP based Routing policy
+    - Routing is based on Clients IP address.
+    - You provide a list of CIDRs for your clients and the corresponding endpoints/locations.
+
+Multivalue Routing policy
+    - Use when routing traffic to multiple resources.
+    - Can be associated with healtchecks.
+    - upto 8 healthy records are returned for each multi value query.
+
+If we use thirdy party domains we can still use Route53 by adding the NS is Route53 to the third party domain.
+
+We have a Route53 resolver which talks to all public , private and on internet queries.
+If we want it to answer or resolve the on-premise query then a Resolver inbound endpoint is used, to which the On premise DNS resolvers connect.
+
+Similarly vice versa if we want our private ec2 instance to resolve a on premise dns query then request can be sent outside to the DNS resolvers.
+
