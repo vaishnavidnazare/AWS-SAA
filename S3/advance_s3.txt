@@ -1,0 +1,40 @@
+S3 lifecycle rules
+    - this rules are user defined which choose or switch the storage classes between the available ones.
+    - It is not like intelligent tier where there was no human intervention and the different frequent and infrequent classes were defined.
+    - we can use amazon S3 analytics to transition objects to the right storage classes , this are used only for standard and standard IA.
+
+S3 Requester Pays
+    - With requester pays buckets, the requester instead of the bucket owner pays the cost of the request and the data download from the bucket.
+    - helpful when you want to share large datasets with other accounts.
+    - the requester must be authenticated in AWS.
+
+S3 Event Notifications
+    - Event can be of or due to object creation, object removed, object restored, object replication, etc..
+    - the events can be sent to sns, sqs, lambda function or amazon event bridge.
+    - Resource access policies are required to sent the events to sns, sqs and lambda.
+    - from S3 bucket all events go to amazon event bridge and then reach different destinations by the rules defined in the jsons.
+    - the s3 performance is very high , it provides 3500 PUT and 5500 GET requests per second per prefix in a bucket.
+    - to improve performance use multi-part upload.
+    - S3 transfer accelaration using edge locations.
+
+S3 Batch Operations
+    - allows to Perform bulk Operations on existing s3 objects with a single request.
+    - we can use S3 Inventory to list objects, and use athena to query and filter your objects.
+    
+S3 Storage lens
+    - a service to help us understand , analyze, and optimize storage across entire AWS Organization.
+    - we have a default dashborad that shows data across different accounts and regions , etc.
+    - different types of metrics are provided
+        - summary metrics
+        - cost-optimization metrics
+        - data protection metrics
+        - access-management metrics
+        - event metrics
+        - performance metrics
+        - activity metrics
+        - detailed status code metrics
+
+    -  there are free and paid metrics.
+    
+
+

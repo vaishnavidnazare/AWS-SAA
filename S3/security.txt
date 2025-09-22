@@ -1,0 +1,93 @@
+Object Encrption 
+    - 4 methods
+        - Server-Side Encryption (SSE)
+            - with S3 managed-keys (SSE-S3)
+                - encryption using keys handled, managed and owned by AWS.
+                - Encryption type is AES-256
+                - enabled by default for new buckets and new objects
+                - must set header "x-amz-server-side-encryption" : "AES-256"
+                - the object is mixed with the S3 key and then encrypted and uploaded to s3 bucket.
+            - with KMS Keys stored in aws KMS (SSE-KMS)
+                - encryption using keys handled and managed by AWS KMS.
+                - provides user control and audit audt key usage using cloud trail.
+                - must set header "x-amz-server-side-encryption" : "aws:kms"
+                - object mixed with kms key , encrypted and then upload to bucket.
+                - to access the object the KMS key API are used , which have a certain quota limit.
+            - with customer provided keys (SSE-C)
+                - keys fully managed by the customer outside of AWS.
+                - key is provided in http headers for ecah http request.
+                - the object is attached with the external key and encrypted and then uploaded to the bucket.
+                - can be done only from CLI and not the console.
+            - DSSE KMS 
+                - double encryption based on KMS
+        - Client-Side Encryption
+            - clients must encrypt data themselves before sending it to amazon S3.
+            - also data decryption happens and client side outside of amazon S3.
+            - customer fully manages the keys and encryption cycle.
+            - the file is attached with the key and encrypted outside amazon and then uploaded to amazon S3
+        - Encryption in transit/flight
+            - also called SSL/TLS 
+            - Amazon S3 exposes two endpoints 
+                - HTTP - non encrypted
+                - HTTPS - encryption in flight
+    - Bucket policies can be used to force encryption on a bucket.
+
+
+S3 CORS
+    - Cross Origin Resource Sharing
+    - origin = scheme(protocol) + host(domain) + port      
+    - web browser based mechanism to allow requests to other origins while visiting the main origin.
+    - for example (https://www.example.com and other origin https://www.other.com)
+    - the requests wont be fulfilled unless the other origin allows for the requests using CORS headers (Access-control-allow-origin)
+
+S3 MFA Delete
+    - Multi factor authentication
+    - required when 
+        - u want to permanently delete an object version
+        - u want to suspend versioning on the bucket
+    - to use MFA delete versioning must be enabled on the bucket
+    - only the bucket owner(root account) can enable/disable MFA delete
+    - we need to set MFA with on root account,
+    - configure aws cli with root account access key and access key id and then with command enable MFA delete
+
+S3 Access Logs
+    - Any request made to S3 , from any account authorized or denied , will be logged in another S3 Bucket.which then can be analyzed using any data analysis tools like athena.
+    - the target logging bucket must be in the same aws region
+    
+
+S3 Pre-Signed URL 
+    - generate pre signed urls using the CLI,SDK,console (expiration time varies)
+    - Users given a pre-signed URL inherit the permissions of the user that generated the URL for GET/PUT
+
+Glacier vault lock and S3 object lock
+    - glacier vault lock 
+        - lock an object inside the Glacie vault lock.
+        - Adopt WORM (Write Once Read Many) model
+        - create a vault policy for it .
+        - lock the policy itself for future edits.No one not even root user can delete it.
+    - S3 object lock 
+        - Adopt WORM (Write Once Read Many) model
+        - block an object version deletion for a specified amount of time.
+        - retention mode:
+            - compliance: object or retention cannot be deleted or removed by anyone not even root user.
+            - governance: some users can delete the object or change the retention.
+        - retenetion period: protect the object for a fixed period, it can be extended
+        - Legal Hold: protect the object indefinitely, independent from retention period
+            - to chnage this the permission s3:PutObjectLegalHold is required.
+
+S3 Access points
+    - we can create different access points for different types of users.
+    - this can be done using the access point policy
+    - each access point has itd own DNS name (internet origin or VPC Origin)
+    - VPC origin
+        - we can define the access point to be accessible only from the within the VPC
+        - we need to create a VPC endpoint to access the Access point
+        - the VPC Endpoint policy must allow access to the target bucket and Access Point.
+
+S3 Object lambda
+    - Ue AWS lambda functions to the change the object before it is retrieved by the caller function.
+    - only one S3 bucket is needed on top of which we create S3 Access Point and S3 Object lambda Access points.
+    
+
+
+

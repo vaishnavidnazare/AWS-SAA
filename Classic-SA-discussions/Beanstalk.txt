@@ -1,0 +1,9 @@
+Elastic Beanstalk is a developer centric view of deploying an application on AWS.
+    - Managed Service
+        - Automatically handles capacity provisioning, load balancing, scaling, application helath monitoring, instance configuration ,...
+        - Just the application code is the responsisbility of the developer
+        - we still have full control over the configuration
+        - beanstalk is a free service on its own we pay just for the underlying instances.
+        - create application -> upload version -> launch environment -> manage environment.
+        - we can have a web server tier with load balancer and a worker tier with the SQS service from which the instances pull the request.
+        
