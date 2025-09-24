@@ -1,0 +1,6 @@
+Global accelerator
+    - unicast ip - one server holds one ip address
+    - anycast ip - all the servers will hold the same ip address and the client is routed to the nearest one.
+    - global accelerator uses the concept of anycast ip
+    - it is similar to cloudfront but request always goes to the origin and is not cached anywhere.
+    

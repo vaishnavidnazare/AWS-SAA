@@ -1,0 +1,14 @@
+Cloudfront
+    - Content Delivery Network (CDN)
+    - Improves read performance Content is cached at the edge.
+    - also safe with DDoS protection.
+    - It has different origins(destination points)
+        - S3 Bucket
+        - VPC origin
+        - Custom Origin
+    - this origins are secured using OAC(origin access control)
+    - geographic restrictions can be used in cloudfront to restrict access for some countries.
+    - the cost of data out per edge locations varies.
+    - there are different price classes that can be used
+    - we can use cache invalidations to make sure new changes made at the backend are reflected.
+    
