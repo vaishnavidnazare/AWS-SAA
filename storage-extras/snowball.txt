@@ -1,0 +1,108 @@
+snowball
+    - highly-secure, portable devices to collect and process data at the edge and migrate data into and out of AWS.
+    - helps migrate upto petabytes of data 
+    - snowball edge storage optimized, snowball edge compute optimized
+    - Snowball cannot import to Glacier directly, we need to use amazon S3 with lifecycle policy.
+
+Amazon FSx
+    - Amazon FSx Overview
+        Fully managed third-party file system solutions on AWS: Windows File Server, Lustre, NetApp ONTAP, and OpenZFS.
+
+        Handles setup, patching, maintenance, scalability, hardware, and software administration.
+
+        Integrated with AWS cloud-native services.
+
+        - 1. FSx for Windows File Server
+
+                Native, managed Windows file system supporting SMB, NTFS file systems, and Microsoft Active Directory (AD) integration.
+
+                Designed for Windows-based workloads requiring file sharing, ACLs, NTFS, shadow copies, quotas, and DFS Namespaces.
+
+                Works with EC2, WorkSpaces, AppStream, VMWare Cloud on AWS, and on-premises via Direct Connect/VPN.
+
+                SSD-backed; up to 2 GB/s throughput, hundreds of thousands of IOPS, consistent sub-millisecond latency.
+
+                Can set user quotas and use data deduplication for cost reduction.
+
+                Access via "Map Network Drive" or Windows Shared Folders UI.
+
+                High availability:
+
+                All file systems automatically replicate within the same AZ.
+
+                Multi-AZ deployment adds cross-AZ replication with active-standby setup; ensures data availability during AZ failure.
+
+                DFS Namespaces allow grouping shares into a single logical folder structure, scalable to hundreds of PBs and tens of GBs per second.
+
+                Uses VSS (Volume Shadow Copy Service) for daily backups to S3, restores possible for individual files.
+
+                Compliant with ISO, PCI-DSS, SOC, HIPAA; encryption in-transit (Kerberos/session keys) and at rest (AWS KMS).
+
+                Charged hourly: storage (per GB), throughput (per MB/s), and backup storage (per GB).
+
+        2. FSx for Lustre
+
+                High-performance, parallel file system for fast processing (HPC, ML, analytics, media workflows).
+
+                POSIX-compliant, works natively with Linux AMIs (Amazon Linux, Ubuntu, RHEL, CentOS, SUSE).
+
+                Direct integration with S3:
+
+                S3 objects appear as files on Lustre
+
+                Write processed data/results back to S3.
+
+                Data accessible from EC2, on-premises (Direct Connect/VPN), supports bursting workloads to AWS.
+
+                Two deployment types:
+
+                Scratch: short-term, performance-focused, no HA or replication, auto-heal.
+
+                Persistent: long-term, provides HA in one AZ, self-healing.
+
+                Baseline throughput: 200 MBps per TB of provisioned storage; scales up with file system size.
+
+                Millisecond/sub-millisecond latencies; millions of IOPS; hundreds of GB/s throughput.
+
+                Files imported/exported to/from S3 and across regions.
+
+                Supports security groups, encryption, IAM.
+
+                Billed per storage and throughput provisioned.
+
+        3. FSx for NetApp ONTAP
+
+                Shared file storage for Linux, Windows, macOS via NFS, SMB, iSCSI.
+
+                Supports Storage Virtual Machines (SVMs), volumes, CLI/REST API management, replication (SnapMirror), caching (FlexCache).
+
+                Automatic capacity tiering: cold/infrequently accessed data is transitioned to a lower-cost capacity pool.
+
+                Multi-protocol access; suitable for lift-and-shift NAS workloads.
+
+                Policy-driven data management, snapshots, cross-region backup copies.
+
+        4. FSx for OpenZFS
+
+                Managed OpenZFS file system; Linux, Windows, macOS via NFS.
+
+                Data management: compression, point-in-time snapshots, cloning, thin provisioning, user/group quotas.
+
+                Backups to S3, multi-volume support, cross-region copy.
+
+                Powered by AWS Graviton processors for performance and efficiency.
+
+                General Security & Compliance
+                Encryption at-rest (AWS KMS) and in-transit (protocol level).
+
+                Integration with CloudTrail for API monitoring/logging.
+
+                Access control via IAM and AD (for Windows).
+
+                Compliant with main security/regulatory standards.
+
+                Cost Optimization
+                Data deduplication, automatic tiering, pay-as-you-go pricing model, user quotas help control and optimize storage costs.
+
+
+     

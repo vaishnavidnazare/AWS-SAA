@@ -1,0 +1,12 @@
+AWS DataSync
+    - Move large data to nad from the onpremise and cloud data places
+    - Can synchronize to 
+        - amazon S3
+        - amazon EFS
+        - amazon FSx
+    - the replication is not synchronous, it can be scheduled hourly, daily, or weekly.
+    - file permissions and metadata are preserved.
+    - aws DataSync agent needs to be installed on the onpremise 
+    - if there is not enough networking capabilities than AWS Snowcone is used (agent- preinstalled)
+    - can also be used to sync data between aws storage services.
+     

@@ -1,0 +1,12 @@
+AWS Transfer Family
+    - A fully managed service for file transfers into and out of s3 or EFS using FTP protocol
+    - Supported protocols:
+        - FTP (File transfer protocol)
+        - FTPS (File transfer protocol over SSL)
+        - SFTP (Secure File transfer protocol)
+    - Manged infrastructure, scalable, reliable, highly available.
+    - pay per provisioned endpoint per hour and data transfers in GB.
+    - stores and manages user-credentials within the service.
+    - can integrate with authentication systems
+    - it can be accessed using endpoint or domain name using route53.
+    
