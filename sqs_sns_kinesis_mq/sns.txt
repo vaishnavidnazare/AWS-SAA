@@ -1,0 +1,8 @@
+SNS
+    - pub/sub model
+    - subscribers to topic will recieve the messages.
+    - upto 12,500,000 subscriptions per topic.
+    - 100,000 topics limit.
+    - It has same kind of security as SQS.
+    - works with SQS queues in other regions.
+    - We also have SNS FIFO similar to SQS FIFO

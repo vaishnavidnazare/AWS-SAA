@@ -1,0 +1,31 @@
+KDS(Kinesis Data Streams)
+    - Collect and store sreaming data in real time.
+    - Retention between upto 365 days.
+    - ability to reprocess data by consumers
+    - data cant be deleted from kinesis until it gets expired.
+    - data upto 1MB
+    - encryption at rest with KMS , and encryption in-flight with HTTPS.
+    - to write an optimized producer application use KPL (kinesis producer library)
+    - to write an optimized consumer application use KCL (kinesis client library)
+    - Capacity modes
+        - provisioned mode
+            - choose number of shards
+            - each shard get 1 MBps in (or 1000 records per sec)
+            - each shard gets 2 MBps out 
+            - pay per shard provisioned per hour
+        - On-demand mode
+            - no need to provision or manage the capacity.
+            - default - 4MBps in or 4000 records per sec.
+    - producers can be kinesis agent, aws SDK , KPL.
+    - consumers can be kinesis data analytics, kinesis data firehose, KCL.
+    
+
+Kinesis Data firehose (amazon data firehose)
+    - is a service to send data from different sources to a target.
+    - the data received by firehose can be transformed using lambda functions.
+    - the data is sent further in batches, to the destinations.
+    - the data can also be backed up to s3 bucket.
+    - it is a fully managed service.
+    - Automatic scaling, serverless, pay for what you use.
+    - Near-real time with buffering capability based on size/time.
+

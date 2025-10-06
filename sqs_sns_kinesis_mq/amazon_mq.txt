@@ -1,0 +1,8 @@
+Amazon MQ 
+    - traditional applications running from on-premises may use open protocols such as : MQT, AMQP, STOMP, OpenWire, WSS.
+    - when migrating to the cloud , instead of re-engineering the application to use SQS and SNS we can use Amazon MQ.
+    - it is a managed message broker service rabbitmq and activemq.
+    - it doesnt scale as much as SQS/SNS.
+    - it runs on servers, can run in multi-AZ with failover.
+    - it has both SQS and SNS features.
+    

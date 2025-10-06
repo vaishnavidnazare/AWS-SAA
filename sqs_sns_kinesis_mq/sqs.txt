@@ -1,0 +1,52 @@
+SQS - queue model
+SNS - pub/sub model
+Kinesis - real-time streaming model
+
+SQS
+    - Fully managed service used to decouple applications
+
+SQS Standard
+    - there can be unlimited messages in the queue
+    - default retention is 4 days can be maximum of 14 days.
+    - low latency
+    - the size limitation is 256kb per msg sent.
+    - can have duplicate and out of order messages.
+    - producers send messages to SQS using the SDK (with SendMessage API)
+    - consumers polls messages from SQS (recieve up to 10 messages at a time)
+    - consumers delet the messages from the queue usinf the DeleteMessage API.
+    - consumers can be instances of ASG working on the cloudwatch metrics of the queue length.
+    
+SQS Security 
+    - Encryption
+        - In-flight encryption using HTTPS API
+        - At-rest encryption using KMS keys.
+        - Client-side encryption if the client wants to perform encryption-decryption itself.
+    - Access Controls
+        - IAM policies to regulate access to the SQS API
+    - SQS Access policies.(similar to S3 bucket policies)
+        - useful for cross-account access to SQS queues.
+        - useful for allowing other services to write to an SQS queue.
+
+Message visibility timeout
+    - when a message is polled by a consumer it becomes invisible to other consumers.
+    - by default message visibility timeout is 30 secs, it means till that time no other consumers can see that message after that if the message is still undeleted by any consumer than it is visible to all.
+    - it means if we dont process the message within the visibility timeout window it will be processed twice.
+    - if a consumer needs a longer time to process the message than the timeout , then it can use the ChnageMessageVisibility API.
+    
+
+Long Polling
+    - When a consumer requests messages from the queue , it can optionally wait for messages to arrive if there are none in the queue.
+    - Long polling decreases the number of API calls made to SQS while increasing the efficiency and reducing latency of your application.
+    - thw wait time can be 1 sec to 20 sec.
+    - can be enabled using the WaitTimeSeconds parameter.
+
+SQS FIFO (first in first out)
+    - limited throughput - 300 msgs without batching and 3000 msgs with batching.
+    - exactly once send capability (duplicates are removed)
+    - ordering by message group ID
+    - the name of the queue should end with '.fifo'
+
+
+
+
+
