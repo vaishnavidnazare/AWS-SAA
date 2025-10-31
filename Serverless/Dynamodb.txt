@@ -1,0 +1,49 @@
+Dynamo DB
+    - Fully managed highly available with replication across multiple AZs.
+    - not a relational database with transactional support.
+    - can be sacled massively.
+    - Fast and consistent 
+    - has all security aspects - IAM, authorization and administration.
+    - low cost and autoscaling capability.
+    - no need to provision, always available.
+    - it is made of tables, in which we create a primary key at the time of table creation.
+    - can have infinite number of items (=rows)
+    - each item has attributes (can be added over time or can be null)
+    - maximum size of an item is 400KB
+    - data types supported are 
+            - scalar types
+            - document types
+            - set types
+    -there are capacity modes to manage the table capacity
+        - provisioned mode
+            -  need to plan the capacity beforehand by specifying the number or reads/writes per sec.
+            - pay for provisioned read capacity units and write capacity units.
+            - autoscaling mode can be added to scale RCU and WCU
+        - on-demand mode
+            - no capacity planning required , it scales automatically
+            - pay for what you use
+            - more expensive
+
+
+Dynamo DB Accelerator (DAX)
+    - fully managed , highly available , seamless in-memory cache for dynamo DB.
+    - help solve read congestion by caching
+    - microseconds latency for cached data
+    - doesnt require application logic modification , works with dynamo Db existing APIs.
+    - application -> DAX Cluster -> DynamoDB
+    - there is also stream processing 
+        - ordered stream of item level modification - which helps to take actions on the item modifications done.
+        - we have dynamo db streams and kinesis data streams each with different propeties of retention etc. (kinesis has higher retention and consumers)
+
+
+There are dynamo db global tables, which have replicas in different region , the prerequisite for it is dynamo db data streams.
+
+    - there is TTL set in dynamo db which is by default minutes after which items get deleted.It can be used for session handling etc.
+    - dynamo db can be used for disaster recovery.
+        - continuous backups using point-in-time recovery(PITR)
+        - on-demand-backups
+
+Dynamo DB integration with amazon s3
+    - we can export dynamo to s3 (need to enable PITR).
+    - we can also import files from s3 to dynamo DB in table format.
+

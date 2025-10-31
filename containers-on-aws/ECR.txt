@@ -1,0 +1,6 @@
+ECR (Elastic Container Registry)
+    - used to store and manage docker images on AWS
+    - we can create a private repository for ourselves, or we can create a public repo and push it to public gallery.
+    - fully integrated with ECS and the backend is amazon S3.
+    - the permission to access the images is given to ECS using IAM roles.
+    - supports image vulnerability scanning , versioning, image tags , image lifecycle.

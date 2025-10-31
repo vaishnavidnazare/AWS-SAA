@@ -1,0 +1,19 @@
+Elastic Kuberenets service (EKS)
+    - way to launch managed Kuberenets cluster on AWS.
+    - Kuberentes is an alternative to ECS , similar goal but different API.
+    - EKS supports EC2 if you want to deploy worker nodes and fargate if u want to deploy serverless containers.
+    - Kubernetes is cloud agnostic.
+    - EKS pods are setup in nodes , and Autoscaling can be used for them.
+    - Node types
+        - Managed Node Groups
+            - creates and manages nodes
+            - nodes are part of an ASG managed by EKS
+            - Supports On-Demand or spot instances.
+        - Self Managed nodes
+            - nodes created by us then registered to the EKS cluster and then managed by an ASG.
+            - we can use prebuilt amazon EKS optimized AMI 
+            - supports On-Demand or spot instances.
+        - AWS Fargate
+            - no maintenance required ; no nodes managed.
+    - we can use addons to attach EBS Volumes to instances.
+    

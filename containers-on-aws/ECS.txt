@@ -1,0 +1,40 @@
+ECS (Elastic Container Service.)
+    - launching docker Container on AWS means launching ECS tasks on ECS Clusters.
+    - With EC2 launch type
+        - EC2 instances are launched in the cluster.
+        - Each EC2 instance must run the ECS agent to register the instance in the ECS Cluster.
+        - AWS takes care of starting and stopping the containers.
+    - With ECS Fargate launch type
+        - no EC2 instances to manage, its all serverless.
+    - ECS IAM roles
+        - as each instance has an ECS agent , an EC2 instance profile can be created which allows the agent to perform all of its tasks.
+        - ECS task roles can be created to allow each task to access different ECS services.
+        - task role is defined in the task definition.
+    - Load Balancer Integrations.
+        - application Load Balancer can be used and is recommended in most cases,
+        - network load balancer is recommended only for high throughput/ high performance use cases.
+    - data volumes
+        - mount EFS file systems onto ECS tasks.
+        - works both for ec2 and fargate launch types.
+        - fargate + EFS = serverless
+        - persistent multi-az shared storage for your containers.
+        - amazon s3 cannot be mounted as a file sysytem to ECS tasks.
+    - we need to create the ecs cluster and the launch type instances seperately amd then add them to the cluster.
+
+ECS Service Auto scaling (task level not instance level)
+    - it uses aws application auto scaling, and is based on.
+        - cpu utilisation
+        - memory utilisation
+        - ALB request count per target.
+    - types of scaling 
+        - target tracking - based on target value for a specific cloud-watch metric.
+        - step scaling - based on a specified cloud watch alarm.
+        - scheduled scaling - scale based on specified date/time.
+    - most suitable for fargate launch type.
+
+EC2 launch type - Autoscaling EC2 instances
+    - ASG 
+    - ECS Cluster capacity provider
+        - used to automaticlly provision and scale the infra for ECS tasks.
+        - it is also paired with ASG
+        

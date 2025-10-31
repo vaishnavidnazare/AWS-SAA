@@ -1,0 +1,12 @@
+App Runner
+    - fully managed service that makes it easier to deploy web applications and APIs at scale
+    - no infra experience required.
+    - we get automatic scaling ,high availability, load balancer, encryption.
+    - VPC access support.
+    - connect to database ,cache and message queue services.
+
+
+AWS App2Container (A2C)
+    - CLI tool for migrating and modernizing Java and .NET web apps into Docker containers.
+    - process like , creating docker image , containers, pods , cloudformation template and then deploy on AWS.
+    

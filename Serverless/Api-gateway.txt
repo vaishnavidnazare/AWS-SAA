@@ -1,0 +1,33 @@
+API Gateway.
+    - REST APIs that are public and accessible to client. (we also haeve different other API types)
+    - it can be integrated with many other resources fo different use cases.
+    - this can be deployed in different ways (endpoint types)
+        - edge-optimized(default) - global
+        - regional
+        - private (within VPC)
+    
+Step Functions
+    - Buils serveless visual workflow to orchestrate your lambda functions.
+    - human approval feature can also be implemented.
+
+
+Amazon cognito
+    - Its Role is to give users an identity to interact with our web or mobile application.
+    - Cognito subservices:
+        - Cognito user pools
+            - provides sign in functionality for app users.
+        - Cognito identity pools(federated identity)
+            - provide aws credentials to users so they can access AWS resources directly.
+            - good integration with user pools.
+
+Cognito user pools (CUP)
+    - create a servreless database of user for your web and mobile applicactions.
+    - provides many other authentication and login features.
+    - Integrates with api gatewy and ALB.
+
+Cognito Identity pools
+    - directly access aws accounts use aws credentials
+    - the iam policies applied to the credentials are defined in cognito
+    - the web or mobile applications take the token from CUP and then send request to identity pools to get credentials.
+    - can also make row level security in dynamoDB.
+    
