@@ -1,0 +1,132 @@
+Athena
+    - Serverless query service to analyze data stored in Amazon S3
+    - Uses standard sql language to query the files(Build on presto)
+    - Supports CSV,JSON,ORC,Avro,and parquet file types.
+    - Pricing: $5.00 per TB of data scanned.
+    - Commonly used with amazon Quicksight for reporting/dashboards.
+    - use columnar data for cost-savings (less scan) - Apache parquet or ORC is recommended
+    - Compress data for smaller retrievals
+    - partition datasets in S3 for easy querying on virtual columns.
+    - use larger files to minimize overhead (> 128 MB)
+    - Federated query
+        - Allows you to run sql queries across data stored in Relational, non-Relational, object, and custom data sources
+        - Uses data source connectors that run on AWS Lambda to run federated queries.
+        - store the results back in S3
+
+
+Redshift
+    - based on postgreSQL m but its not used for OLTP
+    - used for OLAP - online analytical processing.
+    - 10x better performance than other data warehouses, scales to PBs of data.
+    - columnar storage of data instead of row based, and parallel query engine
+    - two modes: provisioned cluster or serverless cluster
+    - has sql interface, for queries.
+    - BI tools such as amazon Quicksight or tableau integrate with it.
+    - VS Athena: faster queries/joins/ aggregations thanks to indexes.
+    - has the concept of leader and compute Node 
+        - leader node: for query planning; results aggregations
+        - compute node: for performing queries; send results to leader.
+        - provisioned mode: choose instance types in advance; can reserve instances for cost savings.
+    - Redshift has multi AZ mode for some clusters
+    - Snapshots are point in time backups of a cluster stored internally in S3
+    - snapshots are incremental.
+    - you can restore a snapshot into a new cluster
+    - Automated: every 8hours, every 5 GB, or on a schedule . set retention.
+    - Manual: snapshot is retianed until you delete it.
+    - You can configure redshift to automatically copy snapshots(automated or Manual) of a cluster to another AWS Region.
+    - data is loaded in redshift using
+        - amazon kinesis data firehose
+        - S3 using copy command
+        - EC2 instance JDBC driver
+    - Redshift spectrum
+        - Query data that is already in S3 without loading it.
+        - Must have a Redshift cluster available to start the query
+        - the query is then submitted to thousands of redshift spectrum nodes.
+        - then query result is sent to compute nodes.
+
+
+Amazon OpenSearch service
+    - it is a successor to amazon elasticsearch
+    - In dynamodb, queries only exist by primary key or indexes.
+    - with OpenSearch , you can search any field, even partially matches.
+    - it can be used complement to another database.
+    - Two modes: managed cluster or serverless cluster
+    - does not natively support sql
+    - Ingestion from kinesis data firehose, AWS IOT, and cloudwatch logs.
+    - security through cognito and IAM, KMS encryptions, TLS.
+    - comes with opensearch dashboards
+
+
+EMR(Elastic MapReduce)
+    - helps creating hadoop clusters(big data) to analyze and process vast amount of data.
+    - The clusters can be made of hundreds of EC2 instances
+    - it takes care of all provisioning and configuration
+    - autoscaling and integrated with spot instances.
+    - it comes bundled with apache spark , hbase, presto, flink...
+    - master node: manage the cluster , coordinate, manage health - long running
+    - core node: run tasks and store data - long running
+    - task node(optional): just to run tasks - usually Spot.
+    - on-demand: wont be terminated, reliable, predictable
+    - reserved: min 1 year;cost savings
+    - spot instances: cheaper, can be terminated; less reliable.
+    - can have long-running cluster, or transient (temporary) cluster.
+
+
+Quicksight
+    - Serverless machine learning-powered business intelligence service to create interactive dashboards.
+    - fast, automatically scalable, embeddable, with per-session Pricing
+    - integrated with rds, athena, s3, redshift,..
+    - in-memory computation using SPICE engine if data is imported into QuickSight.
+    - Enterprise Edition: Possibility to setup column-level security (CLS)
+    - can also integrate with third party data sources and databases.
+    - can also import data sources directly into QuickSight
+    - define users (standard versions) and groups (Enterprise versions)
+        - these users and groups only exist within Quicksight and not IAM
+    - A dashboard is a read-only snapshot of an analysis(with the configurations you made for the analysis) that you can share.
+    - to share a dashboard you must first publish it.
+
+
+AWS Glue
+    - Managed ETL Service (Extract , transform and load)
+    - useful to prepare and transform data for analytics.
+    - Fully serverless service.
+    - also used to convert data into parquet format.
+    - it has amazon glue data catalog which uses aws glue data crawler to fetch all data and then store it in catalog from where the data is used for transformation.
+    - glue job bookmarks: prevent re-processing old data.
+    - Glue databrew: clean nad normalize data using pre built transformation.
+    - glue studio: new GUI , run nad monitor ETL jobs in glue.
+    - Glue streaming ETL
+
+Lake Formation
+    - data lake: central place to have all your data for analytics purposes
+    - Fully managed service that makes it easy to setup a datalake in days.
+    - discover, cleanse, transform, and ingest data into your data lake.
+    - automates many complex manual steps.
+    - combine structured and unstructured data in the data lake.
+    - out-of-the-box source blueprints: S3, RDS, Relational nad nosql DB.
+    - fine-grained access control for your applications (row and column-level)
+    - Built on top of AWS Glue.
+    - datalake stored in aws s3.
+
+Amazon managed service for apache flink
+    - Previously named : kinesis data analytics for apache flink
+    - Flink(java,Scala or SQL) is a framework or processing data streams.
+    - it allows us to run any apache flink application on a managed cluster on AWS.
+    - flink does not read from amazon data firehose.
+
+
+Amazon managed streaming for apache kafka (MSK)
+    - Alternative to amazon kinesis
+    - Fully managed apache kafka on AWS
+        - Allow you to create update and delete clusters.
+        - MSK creates and manages kafka brokers nodes and zookeeper nodes for you
+        - deploy the MSK cluster in your VPC, Multi-AZ (up to 3 for HA)
+        - automativ recovery from common failures
+        - Data is stored on EBS volumes for as long as u want.
+    - MSK serverless
+    - there are some differences between it and kinsesis.
+
+
+Big Data ingestion pipeline
+    - we want ingestion pipeline to be fully serverless.
+    - This can be done using all the different services coming hand in hand. 
