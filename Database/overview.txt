@@ -1,0 +1,77 @@
+Types
+
+RDBMS(SQL/OLTP): RDS,Aurora - great for joins
+NoSQL database: no joins , DynamoDB(~JSON), ElasticCache(key/value pairs), Neptune(graphs) , DocumentDB(for MongoDB), KeySpaces(For apache cassandra).
+Object Store: S3 (for big objects) / Glacier (for backups/archives)
+Data WareHouse (SQL Analytics / BI): Redshift(OLAP), Athena, EMR
+Search: OpenSearch (JSON) - free text, unstructured searches.
+Graphs: Amazaon neptune - displays reltaionships between data
+Ledger: Amazon Quantum ledger database
+TimeSeries : Amazon TimeStream
+
+
+RDS
+    - Need to provision RDS Instance size and EBS Volume Type & size. 
+    - Bhind the scenes, Amazon RDS uses Amazon EBS (Elastic Block Store) volumes to store the actual database data and logs.​
+    - These EBS volumes are automatically created, attached, and managed by AWS when you create an RDS instance. You do not have direct access to or management control over the EBS volumes used by RDS.
+    - Support for read replicas and multi-AZ
+    - Automated Backup with point in time restore feature (up to 35 days)
+    - Manual db snapshot for longer-term recovery
+    - Managed and scheduled maintenance with downtime.
+
+Aurora
+    - Compatible API for postgreSQL/MySQL, seperation of storage and compute.
+    - Aurora Serverless - for unpredictable / intermittent workloads., no vapacity planning.
+    - Aurora Global: upto 16 DB Read instances in each region , less than 1 sec for storage replication.
+    - Aurora database cloning : new cluster from existing one , faster than restoring a snapshot.
+
+ElasticCache
+    - Support for Clustering(Redis) and multi az , read replicas(sharding)
+
+DynamoDB
+    - milisecond latency
+    - can replace ElasticCache as a key/value store.
+    - Global Table feature: active-active setup.
+    - great to rapidly evolve schemas.
+
+S3
+    - it is serverless, scales infinitely, max object size is 5TB, versioning capability.
+    
+
+DocumentDB
+    - DocumentDB is similar to Aurora but for MongoDB (NoSQL)
+    - MongoDB is used to store,query, and index JSON data.
+    - Similar deployment concepts as Aurora.
+    - Fully managed highly available with replication across 3 AZ.
+    - DocumentDB storage automatically grows in increments of 10 GB.
+
+Amazon Neptune
+    - Fully Managed graph database
+    - Highly available across 3 az , with upto 15 read replicas.
+    - Build and run applications working with highly connected datasets - optimized for this complex and hard queries.
+    - can store upto billions of relations and query the graph with milliseconds latency.
+    - Highly available withreplications across multiple AZs.
+    - Streams in Neptune are real-time ordered sequence of every change to your graph data.
+    - Noduplicates , strict order.
+    - streams data is accessible in an HTTP REST API.
+
+Amazon KeySpaces (For apache cassandra)
+    - Apache cassandra is an opensource NoSQL distributes database.
+    - KeySpace is a managed Cassandra-Compatible database service.
+    - serverless,scalable,highly available , fully managed by AWS.
+    - tables are replicated 3 times across multiple AZ.
+    - using the cassandra query language
+    - Single-digit milliseconds latency at any scale, 1000s of requets per second
+    - same capacity modes as DynamoDB
+
+
+TimeStream 
+    - Fully managed , fast,scalable, serverless time series database
+    - automatically scales up/down to adjust capacity
+    - store and analyze trillions of events per day.
+    - 1000s time faster and 1/10 th the cost of Relational databases
+    - scheduled queries, multi-measure records, SQL compabilty.
+    - Data storage tiering: recent data kept in memory and historical data kept in cost-optimized storage.
+    - Built-in times series analytics functions.
+    - Encryption in transit and at rest.
+    

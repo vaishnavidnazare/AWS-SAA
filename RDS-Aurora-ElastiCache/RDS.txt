@@ -21,7 +21,7 @@ RDS (Relational Database Service)
 
 RDS Custom
     - For Oracle and Microsoft SQL server database
-    - Access to OS and database customization
+    - Access to OS and database customizations
     - SSH into EC2 instance
 
 Amazon Aurora
