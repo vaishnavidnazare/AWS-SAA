@@ -1,0 +1,52 @@
+AWS Organizations
+    - Global service
+    - allows to manage multiple aws accounts
+    - the main account is the management account and other are member accounts(can be a part of only one account)
+    - Consolidated billing across all ccounts.
+    - pricing benefits from aggregated usage.
+    - shared reserved instances and savings plans disscounts across accounts.
+    - there different advantages of using AWS Organizations
+        - using tagging stndards for billing purposes
+        - enable cloudtrail on all accounts; send logs to central s3 accounts.
+        - Servive control policies - applied to OU or accounts to restrict users and roles.
+
+Tag policies
+    - helps you standardize tags across resources in an AWS Organization
+    - resource categorization
+    - attribute based access control and cost allocation
+    
+IAM Conditions
+    - aws:SourceIp : only particular IPs allowed
+    - aws:RequestedRegion: restrict regions making API calls
+    - ec2:ResourceTag : operations based on tags on instances
+    - aws:MultIFactorAuthPresent : enforce MFA
+    - we have policies for s3 buckets (object level ARN has /* to include all objects)
+    - aws:PrincipalOrgID : allow only if member of AWS Organization with that ID.
+
+IAM Roles or resource based policies can be used according to resource behaviours or requirements.
+
+IAM Permission Boundaries
+    - suppoerted for users and roles (not groups)
+    - Advanced feature to use a managed policy to set the maximum permissions an IAM entity can get.
+
+
+AWS IAM Identity Center (successor to AWS Single Sign-On)
+    - One login for all your AWS accounts in AWS Organizations
+    - there are permission sets in Identity center to define which users has access to what
+    - Multi Account permissions can be set up.
+    - it also has Attribute based access control.
+
+
+AWS Directory Services
+    - helps to create a active directory that has centralized security management
+    - three flavours
+        - AWS Managed Microsoft AD
+        - AD Connector
+        - Simple AD
+
+
+AWS Control Tower
+    - Easy way to set up and govern a secure and compliant multi-account AWS environment based on best practices
+    - uses AWS Organizations to create accounts.
+    - Preventive Guardrail - using SCPs.
+    - Detective Guardrail - using AWS Config.
