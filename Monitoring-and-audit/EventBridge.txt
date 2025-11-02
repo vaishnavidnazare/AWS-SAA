@@ -1,0 +1,41 @@
+EventBridge (formerly cloudwatch events)
+    - it schedules cronjobs, or reacts to certain events pattern, trigger lmbda functions and similar other things.
+    - Its primary role is event ingestion, filtering, routing, and triggering workflows or actions.
+    - this is called event bus.
+        - dafault event bus
+        - partner event bus
+        - custom event bus
+    - Event buses can be accessed by other AWS accounts using Resource-based-policies
+    - You can archive events sent to an event bus.
+    - ability to replay archived events
+    - eventbridge can analyze the events in your bus and infer the schema.
+    - the schema registry allows you to generate code for your application , that will know in advance how data is structured in the event bus.
+    - Schema can be versioned.
+    - we can manage permissions for a specific event bus using resource-based-polcy.
+
+
+Cloudwatch Insights and Operational Visibility.
+    - insights types:
+        - Container insights
+            - collect,aggregate, summarize metrics and logs from containers.
+            - available for containers on 
+                - ECS
+                - EKS
+                - Kubernetes platforms on EC2
+                - fargate (both for ECS and EKS)
+        - lambda insights
+            - monitoring and troublesjooting solution for serverless applications running on AWS lambda.
+            - collects, aggregates, and summarizes system-level metrics including CPU time, memory,disk and network.
+            - collects, aggregates and summarizes diagnostic information such as cold starts and lambda worker shutdowns.
+            - lambda insights is provided as a lambda layer.
+        - contributor insights
+            - analyze log data and create time series that display contributor data 
+                - see metrics about the top n contributor.
+                for eg.- identify the heaviest network users.
+        - Applicaton insights
+            - provides automated dashboards that show potential problems with monitored applications , to help isolate ongoing issues.
+            - powered by SageMaker
+            - enhanced visibility into your application health
+            - findings and alerts are sent to Amazon EventBridge and SSM OpsCenter.
+
+            

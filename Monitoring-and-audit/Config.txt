@@ -1,0 +1,19 @@
+AWS Config
+    - Helps in auditing and recording compliance of your AWS resources.
+    - helps record configurations and changes over time.
+    - can receive alerts for any changes.
+    - it is a per-region service.
+    - can be aggregated across regions and accounts.
+    - Rules
+        - can use AWS Managed config rules (over 75)
+        - Can make custom config rules (must be defined in AWS lambda)
+        - rules can be evaluated / triggered
+        - rules does not prevent actions from happening.
+    - Remediations
+        - Automate remediation of non-compliant resources using SSM Automation Documents.
+        - Use AWS-managed automation documents or use custom automation.
+        - you can set remediation retries if the resource is still non-compliant after auto-remediation.
+    - Notifications
+        - Use EventBridge to trigger notifications when aws resources are non-compliant.
+        - ability to send configuration changes and compliance state notifications to SNS.
+         

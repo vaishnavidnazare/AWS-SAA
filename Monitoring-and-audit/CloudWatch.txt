@@ -1,0 +1,53 @@
+CloudWatch
+    Metrics
+    - provides metrics for every service available in AWS.
+    - we can also create custom  metrics 
+    - we can create dashboard from merics.
+    - we can continuously stream cloudwatch metrics to a destination in real-time and low latency.
+    logs
+    - perfect place to store application logs.
+    - we have log groups and log streams 
+    - we can define log expiration policies.
+    - logs are encrypted by default
+    - can setup KMS-based encryption with your own-keys.
+    - logs sources
+        - SDK, Cloudwatch logs agent, cloudwatch unified agent.
+        - elastic beanstalk: collection of logs from applications.
+        - ECS: collection from containers
+        - AWS lambds: collection from function logs
+        - api gateway
+        - cloudtrail
+        - route53: log DNS queries.
+    - Cloudwatch logs insights: to query the logs in cloudwatch. (not a realtime engine, just quer engine)
+    - Cloudwatch logs s3 export: send all logs to s3 
+    - Cloudwatch logs subscriptions: get a real-time log events from cloudwatch logs for processing and analysis.we can also use subscription filter.
+    - we also have cloudwatch logs aggregation to aggregrate the logs.
+    - logs can be sent from one account to another account.
+    - in livetail we can see the event as soon as it enters cloudwatch.
+
+Cloudwatch agents and cloudwatch logs agents.
+    - By default no logs from ec2 instance go to cloudwatch, we need to run a cloudwatch agent on ec2 to push the logs files you want.
+    - The cloudwatch agent needs proper IAM role
+    - the agent can also be setup on on-premise server too.
+    - Cloudwatch logs agent
+        - old version of the agent
+        - can only send to cloudwatch logs
+    - Cloudwatch unified agent
+        - collect additional system level metrics such as RAM,processes,etc.
+        - Collect logs to send to cloudwatch logs
+        - Centralized configuration using SSM parameter store.
+
+Cloudwatch ALarms
+    - Alarms are used to trigger notifications for any metric.
+    - Alarm states:
+        - OK
+        - INSUFFICIENT_DATA
+        - ALARM 
+    - Targets
+        - EC2 instance
+        - ec2 auto scaling
+        - send notification to SNS.
+    - Composite alarms are monitoring the states of multiple other alarms.alarms cn be combiined with AND and OR conditions.
+    - composite alarms are helpful to reduce alarm noise.
+    - alarms can also be set using status_checks
+    

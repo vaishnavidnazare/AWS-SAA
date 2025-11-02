@@ -1,0 +1,19 @@
+CloudTrail
+    - provides governance, compliance and audit for your AWS Account.
+    - enabled by deafault
+    - get an history of events/ API calls made within your aws account.
+    - can put this logs to cloudwatch or s3.
+    - Events:
+        - Management events : by default trails configured to log this events, can seperate read and write events.
+        - Data events: not logged because of high volume operations.S3 object level activity.
+        - Cloud trail insights events:
+            -  Enable CloudTrail insights to detect unusual sctivity in your acoount.
+            - continuously analyze write events to detect unusual patterns.
+            - work swith s3, Eventbridge further
+    - Retention is 90 days by default.
+    - to keep events longer than retention , log them to S3 and then use Athena to query them.
+
+
+
+
+
