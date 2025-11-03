@@ -1,0 +1,183 @@
+Encryption 101
+    - Encryption in flight (TLS/SSL)
+        - Data is encrypted before sending and decrypted after receiving.
+        - TLS certificates help with encryption (HTTPS)
+        - Encryption in flight ensures no MITM(man in the middle attack) can happen.
+    - Server-side encryption at rest
+        - Data is encrypted afetr being received by the server
+        - Data is decrypted before being sent.
+        - It is stored in an encrypted form thanks to a key (usually a data key)
+        - The encryption / decryption keys must be managed somewhere, and the server must have access to it.
+    Client-side encryption
+        - Data i ecrypted by the client and neve decrypted by the server
+        - Data will be decrypted by a receiving client
+        - The server should not be able to decrypt the data.
+        - Could leverage Envelop Encryption.
+
+
+KMS (key management service)
+    - manages encryption keys.
+    - Fully integrated with IAM for authorization
+    - Easy way to control access to your data.
+    - Able to audit KMS Key usage using CloudTrail.
+    - Seamlessly integrated into most aws services.
+    - KMS keys is the new name of KMS Customer Master Key.
+    - Key types:
+        - Symmetric (AES-256 keys)
+            - single encryption key used to encrypt and decrypt data.
+            - AWS Services that are integrated with KMS use Symmetric CMKs
+            - You never get access to the KMS Key unencrypted (must call KMS API to use)
+        - Asymmetric (RSA & ECC key pairs)
+            - Public (Encrypt) and Private Key (Decrypt) pair.
+            - used for Encrypt/Decrypt, or Sign/Verify operations.
+            - the public key is downloadable, but you cant access the private key unencrypted.
+            - used for encryption outside of aws by users who cant call the KMS API.
+    - Types of KMS keys in aws:
+        - AWS owned keys (free): SSE-S3, SSE-SQS, SSE-DDB (default key)
+        - AWS Managed Key (free): (starts with aws/)
+        - Customer managed keys created in AWS : $1 / month
+        - Customer managed keys imported : $1 / month
+        - pay for API calls to KMS ($0.03 / 10000 calls)
+    - Automatic key rotation
+        - AWS Managed KMS Key: automatic every 1 year.
+        - Customer Managed KMS Key: (must be enabled) automatic and on-demand.
+        - Imported KMS Key: only manual rotation possible using alias.
+    - if we take a snapshot of an EBS Volume encrypted with KMS key , to move it to another region , then we need to reencrypt with another KMS key.
+    - KMS Key policies
+        - similar to S3 bucket policies
+        - you cannot control access without them
+        - default KMS key policy gives complete access to the key to the root user
+        - Custom KMS key policy can be used to define specific access.
+    - When you enable automatic rotation on your KMS key, the backing key is rotated every 1 year.
+
+KMS Multi-Region Keys
+    - identical kms keys in different AWS Regions that can be used interchangeably.
+    - Multi-region keys have the same key ID, key material, automatic rotation if enabled.
+    - can encrypt in one region and decrypt in another regions.
+    - no need to re-encrypt or making cross-Region API calls.
+    - are not global (primary + replicas)
+    - Each multi-region key is managed independently
+
+
+S3 replication with Encryption
+    - unencrypted objects and objects encrypted with SSE-S3 are replicated by deafult.
+    - the object encrypted with SSE-C (customer provided key) can be replicated.
+    - for objects encrypted with SSE-KMS key, you need to enable the option.
+        - specify which KMS-key to encrypt the objects withing target bucket.
+        - adapt kms-key policy for the target key
+        - an iam role.
+        - you might get KMS throttling errors, in which you can ask for service Quota increase.
+        
+
+Encrypted AMI Sharing process
+    - AMI in source account is encrypted with KMS key from source account
+    - Must modify the image attribute to add a launch permission which corresponds to the specified target AWS account.
+    - must share the KMS keys used to encrypted the sanpshot the AMI refrences with the target account / IAM role.
+    - The IAM role/ User in the target account must have the permissions to DescribeKey, ReEncrypt*, CreateGrant, Decrypt.
+    - When launching aN EC2 instance from the AMI , optionally the targte account can specify a new kms key in its own account to re=encrypt the volumes.
+
+
+SSM Parameter Store
+    - Secure storage for configuration and secrets.
+    - Optional Seamless Encryption using KMS.
+    - Serverless, scalable, durable, easy SDK.
+    - version tracking of configurations/secrets.
+    - Security through IAM.
+    - Notifications with amazon eventbridge.
+    - integration with clouformation.
+    - there are two Parameter tiers
+        - standard
+        - advanced
+    - Parameter policies (for advanced Parameter)
+        - Allow to assign a TTL to a parameter, to force updating or deleting sensitive data such as passwords.
+        - can assign multiple policies at a time.
+
+
+AWS Secrets Manager
+    - Newer service meant for storing secrets
+    - Capability to force rotation of secrets every X days.
+    - Automate generation of secrets on rotation (uses lambda)
+    - integration with amazon RDS(MYSQL,PostgreSQL,Aurora)
+    - Secrets are encrypted using KMS
+    - Multi-Region Secrets
+        - Replicate Secrets across multiple AWS Regions.
+        - Secrets Manager keeps read replicas in sync with the primary Secret.
+        - Ability to promote a read replica secret to a standalone secret.
+
+
+AWS Certificate Manager
+    - Easily provision, manage, and deploy TLS certificates.
+    - Provide in-flight encryption for websites (HTTPS)
+    - Supports both public and private TLS certificates
+    - Free of charge for public TLS certificates.
+    - Automatic TLS certificate renewal.
+    - integrates with many aws resources.
+    - Cannot use ACM with EC2 (cant be extracted).
+    - imported certificates have no automatic renewal.
+
+
+AWS WAF (Web Application Firewall)
+    - protects your web applications from common web exploits(Layer 7)
+    - Layer 7 is HTTP (vs layer 4 is TCP/UDP)
+    - can be deploy on:
+        - ALB
+        - API Gateway
+        - CloudFront
+        - AppSync GrpahQL API
+        - Cognito User Pool
+    - Can use Web ACL (Web Access Control List) Rules to further set the conditions and rules on IP sets, headers, size constraints etc.
+    - web ACL are regional except for CloudFront (global)
+    - A rule group is a reusable set of rules that you can add to a web ACL.
+    - to get a fixed IP for WAF, we can use global accelerator for WAF on the ALB
+    
+
+AWS Shield: protect from DDoS attack
+    - Distributed Denial of Service - many requests at the same time.
+    - AWS Shield standard
+        - free service that is activated for every aws customer
+        - provides protection from attacks such as SYN/UDP floods, reflection attacks and other layer3 and layer4 attacks.
+    - AWS Shield advanced 
+        - Optional DDoS mitigation service
+        - protect against more sphisticated attack on EC2, ELB, CloudFront, global accelerator, route53
+        - 24/7 access to AWS DDoS response team.
+        - and other properties.
+    
+
+Firewall Manager
+    - Manage Rules in all accounts of an AWS Organization
+    - rules can be WAF rules, networkfirewall rules, security groups or any other.
+    - Rules are applied to new resources as they are created across all and future accounts in your Organization
+    
+
+Amazon GuardDuty
+    - Intelligent Threat discovery to protect your AWS Account.
+    - Uses machine learning algorithms, anomaly detection, 3rd party data.
+    - It looks into data inputs like:
+        - CloudTrail Event Logs
+        - VPC Flow Logs
+        - DNS Logs and other optional feature.
+    - Can setup EventBridge rules to be notified in case of findings.
+    - Eventbridge rules can target AWS Lambda or SNS.
+    - Can protect against CryptoCurrency Attacks (has a dedicated finding for it)
+
+
+Amazon Inspector
+    - Automated Security Assessments
+    - for following resources:
+        - EC2 instances
+            - leveraging the AWS System Manager(SSM) agent.
+            - Analyze against unintended network accessibility.
+            - Analyze the running OS against known vulnerabilities.
+        - Container images push to amazon ECR
+            - Assessment of container images.
+        - Lambda functions
+            - Identifies software vulnerabilities in function code and package dependencies.
+            - Assessment of functions as they are deployed.
+    - reporting and integration with AWS Security Hub.
+    - Send findings to Amazon Event Bridge.
+    - A risk score is associated with all vulnerabilities for prioritization.
+
+
+Amazon Macie
+    - Fully managed data security and data privacy service hat uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+    - Macie helps identify and alert you to sensitive data , suh as personally identifiable information (PII)
