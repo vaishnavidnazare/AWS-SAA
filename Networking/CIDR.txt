@@ -1,0 +1,31 @@
+CIDR (Classless Inter-Domain Routing) - IPv4
+  - A method for allocating Ip addresses.
+  - They help define an IP address range.
+  - CIDR consists of two components:
+    - Base IP
+        - Represents an IP contained in the range (XX.XX.XX.XX)
+    - Subnet Mask
+        - Defines how many bits can change in the IP
+        - Can take two forms:
+            - /8 <-> 255.0.0.0
+            - /16 <-> 255.255.0.0
+            - /24 <-> 255.255.255.0
+            - /32 <-> 255.255.255.255
+    - The Subnet Mask basically allows part of the underlying IP to get additional next values from the base IP
+        - /32 allows for 1 IP (2^0)
+        - /31 allows for 2 IP (2^1) and so on...
+    - This means:
+        - /32 - no octet can change
+        - /24 - last octet can change
+        - /16 - last 2 octets can change
+        - /8 - last 3 octets can change
+        - /0 - all octets can change
+
+Public vs Private IP (IPv4)
+  - The Internet Assigned Numbers Authority (IANA) established certain blocks of IPv4 addrresses for the use of private (LAN) and public (Internet) addresses.
+  - Private IP can only allow certain values:
+      - 10.0.0.0/8 - in big networks
+      - 172.16.0.0/12 - AWS default VPC in that range.
+      - 192.168.0.0/16 - eg.: home networks.
+  - All the rest of the IP addresses on the Internet are Public.
+
