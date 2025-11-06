@@ -1,1 +1,13 @@
+VPC (Virtual Private Cloud)
+  - All new AWS accounts have a default VPC.
+  - New instances are launched into default VPC if no subnets are specified.
+  - Default VPC has internet connectivity and all EC2 instnaces inside it have public IPv4 addresses.
+  - We also get a public and private IPv4 DNS names.
+  - Can have multiple VPCs in AWS region.
+  - Max. CIDR per VPC is 5, for each CIDR:
+      - Min. size is /28 (16 IPs)
+      - Max. size is /16 (65536 IPs)
+  - Your VPC CIDR should NOT overlap with your other networks.
 
+Subnets
+  - 
