@@ -19,3 +19,5 @@ Subnets
       - 10.0.0.3 - reserved by AWS for future use.
       - 10.0.0.255 - Network Broadcast Address. AWS does not support broadcast in a VPC , therefore the address is reserved.
   - If you need 29 IP adddress for EC2 instances you cannot choose a subnet of size /27 you need to use /26 due to the resrved IPs.
+
+

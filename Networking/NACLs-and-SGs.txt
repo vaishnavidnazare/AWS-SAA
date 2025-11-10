@@ -1,0 +1,6 @@
+NACL (Network Access Control List)
+    - security groups are instance level.
+    - NACL are subnet level.
+    - NACL are stateless.
+    - security groups are stateful. (whatever accepted in is also allowed to go out)
+    - 

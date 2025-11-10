@@ -1,0 +1,7 @@
+Bastion Hosts
+    - Private EC2 instances cannot be accessed directly from the internet.
+    - We can use bastion host to ssh into our private EC2 instances.
+    - The bastion is in the public subnet which is then connected to all othe private subnets using security groups.
+    - Bastion host security group must allow inbound traffic from the internet on port 22 from restricted CIDR (only org)
+    - Security groups of the EC2 instances in the private subnet must allow the security group of the bastion host, or the private ip of the bastion host.
+    

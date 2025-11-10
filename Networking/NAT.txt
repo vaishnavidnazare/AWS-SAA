@@ -1,0 +1,22 @@
+NAT instance (outdated, but still at the exam)
+    - Network Address Translation.
+    - Allows EC2 instances in private subnets to connect to the internet.
+    - Nat instance must be launched in a public subnet.
+    - Must disable EC2 setting: Source/ destination Check.
+    - Must have Elastic IP attached to it.
+    - Route tables must be configured to route traffic from private subnets to the NAT instance.
+    - Not highly available.
+
+
+NAT Gateways
+    - AWS managed NAT instance, higher bandwidth, high availability, no administration.
+    - Pay per hour for usage and bandwidth.
+    - NATGW is created in a specific availability zone , uses an Elastic IP.
+    - Cant be used by EC2 instances in the same subnet.(only from other subnets)
+    - Requires and IGW ( private subnet=> NATGW => IGW)
+    - 5 Gbps of bandwidth with automatic scaling upto 100 Gbps.
+    - No security groups to manage / required.
+    - NATGW is resilient within a single availability zone.
+    - must create multiple NAT Gateways in multiple AZs for fault-tolerance.
+    - There is no cross-AZ failover required beacause is an AZ goes down it doesnt need NAT.
+    
