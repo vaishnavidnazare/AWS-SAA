@@ -1,6 +1,23 @@
 NACL (Network Access Control List)
     - security groups are instance level.
     - NACL are subnet level.
-    - NACL are stateless.
+    - NACL are stateless. (seperate inbound and outbound rules)
     - security groups are stateful. (whatever accepted in is also allowed to go out)
-    - 
+    - NACL are like a firewall which control traffic from and to subnets.
+    - One NACL per subnet, new subnets are assigned teh Default NACL.
+    - You Define NACL rules:
+        - rules have a number (1-32766), higher precedence with a lower number.
+        - First rule match will drive the decision.
+        - the last rule is an asterisk (*) and denies a request in case of no rule mastch.
+    - Newly created NACLs will dent everything.
+    - NACL are a great way of blocking a specific IP address at the subnet level.
+    - Default NACL accepts everything inbound/outbound with the subnets its associated with.
+    - Do not modify default NACL , instead create custom NACLs.
+    
+
+Ephemeral Ports
+    - For any two endpoints to establish a connection, they must use ports.
+    - clients connect to a defined port, and expect a response on an ephemeral port.(it is the port that is used by the client temporarily until the connection is open)
+    - different OS use different port ranges.
+    
+

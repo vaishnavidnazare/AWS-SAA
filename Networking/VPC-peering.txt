@@ -1,0 +1,26 @@
+VPC peering
+    - Privately connect two VPCs using AWS' network.
+    - Make them behave as if they were in the same network.
+    - Must not have overlapping CIDrs
+    - VPC peering connection is NOT transitive.
+    - Must update route tables in each VPCs subnets to ensure EC2 instances can communicate with each other.
+    - VPC peering can be done cross accounts and cross regions as well.
+
+
+VPC Endpoints.
+    - This are used for instances to connect to AWS resources Privately, avoiding traffic to travel through the internet.
+    - It is AWS PrivateLink.
+    - Every AWS service is publicly exposed
+    - VPC Endpoints (powered by AWS Private PrivateLink) allows you to connect to AWS services using a private network instead of using the public internet.
+    - they are redundant and scale horizontally.
+    - they remove the need og IGW,NATGW,.. to access the aws services.
+    - Types:
+        - Interface Endpoints (powered by PrivateLink)
+            - Provisions an ENI(private ip address) as an entry point(must attach a security group)
+            - supports most AWS services.
+            - $ per hour + $ per GB of data processed.
+        - Gateway endpoints.
+            - provisions a gateway and must be used as a target in a route table (does not use security groups)
+            - Supports both S3 and DynamoDB.
+            - Free.
+
