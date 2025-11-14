@@ -24,3 +24,14 @@ VPC Endpoints.
             - Supports both S3 and DynamoDB.
             - Free.
 
+
+VPC Flow Logs
+    - Capture information about IP traffic going into your iterfaces:
+        - VPC
+        - Subnet
+        - Elastic Network Interface
+    - helps to monitor and troubleshoot connectivity issues.
+    - flow logs data can go to S3, cloudwatch logs, and kinesis data firehose.
+    - captures network information from aws managed interfaces too:
+    - To query vpc flow logs we can use athena on s3 or cloudwatch logs insights.
+    - Vpc flow logs require permission to publish logs to cloudwatch logs.

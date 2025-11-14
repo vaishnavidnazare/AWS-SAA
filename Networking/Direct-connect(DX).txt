@@ -1,0 +1,29 @@
+Direct Connect (DX)
+    - Provides a dedicated private connection from a remote network to your VPC.
+    - Dedicated connection must be setup between your DC and AWS Direct Connect locations.
+    - You need to setup a VGW on your VPC.
+    - Access public resources(S3) and private (EC2) on same connection.
+    - Supports both IPv4 and IPv6
+    
+
+Direct Connect Gateway
+    - if you want to setup a Direct Connect to one or more VPC in many different regions (same account), you must use a direct connect Gateway.
+    
+
+Connection Types
+    - Dedicated Connections
+    - Hosted Connections
+
+Lead times are often longer than 1 month to establish a new connection.
+
+If we want encryption then we can setup
+    - AWS Direct Connect + VPN provides an IPsec-encrypted private connection.
+Good for extra level of security but complex.
+
+
+Direct Connect - Resiliency
+    - High Resiliency for critical workloads - (two centres two connections)
+    - Maximum Resiliency for critical workloads - (two centres 4 connections , 2 each)
+
+
+In case Direct Connect fails, you can set up a backup Direct Connect Connection (expensive), or a Site-to-Site VPN connection.

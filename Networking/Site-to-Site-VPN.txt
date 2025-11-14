@@ -1,0 +1,20 @@
+Site-to-Site VPN
+    - consider we have AWS infra and Corporate data centre as well , so for them to connect to each other , this is used.
+    - customer gateway placed on corporate data centre and VPN gateway placed on AWS vpc, this connection id private over internet.(encrypted)
+    - Called as Site-to-Site VPN connection.
+    - Virtual Private Gateway (VGW)
+        - VPN concentrator on the AWS side of the VPN connection.
+        - VGW is created and attached to the VPC from which you want to craete the site-to-site vpn connection.
+        - possibility to customize the ASN (autonomus system number)
+    - customer Gateway (CGW)
+        - Software application or physical device on customer sie of the VPN connection.
+    - if CGW is public its ip can be used directly to connect, but if its private then NATs public IP needs to be used.
+        - and for this to work we need to enable route propagation for VGW in route table.
+    - If you need to ping your ec2 instances from on-premises, make sure you add the ICMP protocol on the inbound of your security groups.
+
+
+AWS VPN CloudHub
+    - Provide secure communication between multiple sites, if you have multiple VPN connections.
+    - Low-cost hub-and-spoke model for primary or secondary network connectivity beween different locations (VPN only).
+    - Its a VPN connection so it goes over the internet.
+    - To set it up , connect multiple VPN connections on the same VGW , setup dynamic routing and configure route tables.
