@@ -1,2 +1,52 @@
 Transit Gateway
-    - 
+    - For having Transitive peering between thousands of VPC and on-premises, hub-and-spoke (star) connection.
+    - VPCs are not peered to each other ut are connected through TGW.
+    - regional resource can work cross region.
+    - share cross-account using Resource Access Manager (RAM)
+    - You can peer transit gateways across regions.
+    - Route tables : limits which vpc can talk with other VPC.
+    - Works with Direct Connect Gateway, VPN connections.
+    - Aupports IP Multicast (not supported by any other AWS service)
+
+ECMP (Equal-cost multi-path routing)
+    - Routing strategy to allow to forward a packet over multiple best path.
+    - Use case: create multiple Site-to-Site VPN connections to increase teh bandwidth of your connection sto AWS.
+
+
+VPC- Traffic mirroring
+    - Allows you to capture and inspect network traffic in your VPC
+    - Route the traffic to security appliances that you manage.
+    - capture the traffic   
+        - from (source) - ENIs
+        - to (targets) - An ENI or a NLB
+    - capture all packets or cature the packets of your interest.
+    - source and target can be in the same VPC or different VPCs.
+
+
+IPv6
+    - IPv4 is designed to provide 4.3 billion addressses (they'll be exhausted soon)
+    - IPv6 is the successor of IPv4
+    - IPv6 is desgned to provide 3.4 * 10^38 unique IP addresses.
+    - every IPv6 address in AWS is public and internet-routable (no private range)
+    - hexadecimal.
+    - IPv4 cannot be disabled for your VPC or subnets.
+    - You can enable IPv6 to operate in dual stack mode.
+    - Your ec2 instances will get at least a private internal IPv4 and a Public IPv6.
+    - they can connect from either , to the internet through an internet gateway.
+
+
+Egress only Internet Gateway
+    - used for IPv6 only.
+    - Similar to NAT gw but for IPv6
+    - Allows instances in your VPC outbound connections over IPv6 while preventing the internet to initiate an IPv6 connection to your instances.
+    - updating route tables is required.
+
+
+AWS Network Firewall
+    - Protect entire VPC.
+    - layer 3 to layer 7 protection.
+    - Internally the firewall uses AWS Gateway Load Balancer.
+    - rules can be centrally managed cross-ccount by AWS Firewall Manager to apply to many VPCs.
+    - supports 1000s of rules.
+    - filter by ip or protocol, or domain level , pattern matching regex etc.
+
