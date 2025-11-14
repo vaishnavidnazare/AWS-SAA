@@ -1,5 +1,5 @@
 Route53
-    - A highly available, scalable, filly managed and Authoritative DNS.
+    - A highly available, scalable, fully managed and Authoritative DNS.
 
 Record Types
     - A : maps hostname to IPv4

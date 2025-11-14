@@ -1,0 +1,41 @@
+Disaster Recovery
+    - RPO = Recovery Point Objective -> How frequent backups are taken, means how much of data loss can u accept/are ready to accept if diaster happens.
+    - RTO = Recovery Time Objective -> Recover from disaster, time after disaster until the recovery.
+    - Disaster recovery strategies
+        - Backup and restore (high RPO,RTO)
+        - pilot light (lower RPO,RTO)
+            - smaller version of app is always running in the cloud
+            - use for critical core 
+        - warm standby (lower RTO,RPO)
+            - full system is up and running, but at minimum size.
+            - upon disaster we can scale upto production load.
+        - Hot site/ Multi site approach (very low RTO, very expensive)
+            - full production scale is running aws and on premise.
+
+
+Database Migration Service (DMS)
+    - quick and securely migrate databases to AWS, resilient, self healing.
+    - the source database remains available during the migartion.
+    - Continuous data replication using CDC 
+    - you must create an ec2 instance to perform the replication tasks.
+    - when Multi-AZ enabled , DMS provisions and maintains a synchronously stand replica in a different AZ.
+
+AWS Schema Conversion Tool (SCT)
+    - Convert your databases schema from one engine to another.
+
+RDS and Aurora MYsql migrations
+RDS and Aurora postgresql migrations
+
+Application Migration Service (MGN)
+    - Application discovery service
+        - Agentless
+        - Agent-based
+    - Lift and shift.
+
+Snowball used for large datasets migrations.
+
+
+VMWare Cloud on AWS
+    - used to manage on-premise data centres.
+    - want to extend the data centre capacity to AWS, but keep using the VMWare cloud software.
+    
