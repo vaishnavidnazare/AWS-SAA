@@ -2,7 +2,7 @@ EventBridge (formerly cloudwatch events)
     - it schedules cronjobs, or reacts to certain events pattern, trigger lmbda functions and similar other things.
     - Its primary role is event ingestion, filtering, routing, and triggering workflows or actions.
     - this is called event bus.
-        - dafault event bus
+        - default event bus
         - partner event bus
         - custom event bus
     - Event buses can be accessed by other AWS accounts using Resource-based-policies

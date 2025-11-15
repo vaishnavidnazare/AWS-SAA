@@ -1,0 +1,15 @@
+Elastic Network Adapter (ENA) 
+    - used for EC2 enhanced networking
+    
+
+Elastic Fabric Adapter (EFA)
+    - improved ENA for HPC, only works for linux.
+    - great for inter-node communications , tightly coupled workloads.
+
+
+AWS Batch
+    - supports multi-node parallel jobs, which enables you to run single jobs that span multiple EC2 instances.
+
+
+AWS parallel cluster
+    - open-source cluster management tool to deploy HPC on AWS

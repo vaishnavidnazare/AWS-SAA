@@ -1,0 +1,87 @@
+CloudFormation
+    - it is a declarative way of outlining your AWS Infrastructure, for any resources (most of them are supported)
+    - can use custom resource for resources that are not supported.
+    - infrastructure composer/Application composer helps us to visualize the diagram and setup.
+    - There is a Service Role , that allows CloudFormation to create/delete/update stack resources.
+    - The user must have role iam:PassRole to create the template.
+    
+
+Amazon Simple Email Service (SES)
+    - Fully managed service to send emails securely, globally and at scale.
+    - provides statistics
+    - Supports DomainKeys Identified Mail (DKIM) and sender policy Framework (SPF)
+    
+
+Amazon Pinpoint
+    - Scalable 2-way marketing communications service, mostly used for SMS.
+    - also receive replies.
+    - compared to SNS and SES it is more managed service.
+
+
+SSM Session Manager
+    - Allows you to start a secure shell on your EC2 and on-premises servers.
+    - No SSH access, Bastion hosts , or SSH keys needed.
+    - No port 22 required (better security)
+    - SSM Agent is used to connect to instance.
+    - IAM Instance Profile required.
+
+Systems Manager - Run Command
+    - Execute a document or just run a command.
+    - Run command across multiple insatnces (using resource groups)
+    - No need for SSH
+
+Systems Manager - Patch Manager
+    - Automates the process of patching managed instances.
+    - OS updates, applications updates, security updates.
+    - Patch on-demand or on a schedule using Maintenemce windows.
+
+Systems Manager - Maintenemce windows
+    - Defines a schedule on when to perform actions on your instances.
+
+Systems Manager - Automation
+    - Simplifies common Maintenance and deployment tasks of EC2 insatnces and other AWS resources.
+    - Auomation runbook in used.
+
+Cost explorer
+    - visualize, understand and manage your aws costs and usage over time.
+    - create custom reports that analyze cost and usage data.
+
+
+AWS cost anomaly detection
+    - continuously monitor your cost and usage using ML to detect unusual spends.
+
+AWS Outposts
+    - AWS Outposts are 'server racks' that offers the same AWS infrastructure, services, APIs and tools to build your own applications on-premises just as in the cloud.
+    - AWS will setup and manage 'Outposts Racks' within your on-premises infrastructure and you can start leveraging AWS services on-premises
+    - fully managed service
+    - services that work on Outposts
+        - EC2
+        - EBS
+        - S3
+        - EKS
+        - ECS
+        - RDS
+        - EMR
+
+
+AWS Batch
+    - Fully managed batch processing at any scale.
+    - batch jobs are defined as docker images and run on ECS.
+    - Batch will dynamically launch EC2 instances or spot instances.
+
+
+Amazon AppFlow
+    - Fully managed integration service that enables you to securely transfer data between software-as-a-service(SAAS) application and AWS
+    
+
+AWS Amplify
+    - A set of tools and services that helps you develop and deploy scalable full stack web and mobile applications.
+
+
+Instance scheduler on AWS
+    - AWS solution deployed through CloudFormation (not a Service)
+    - Automatically start/stop your AWS services to reduce costs (upto 70%)
+    
+
+
+

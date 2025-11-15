@@ -1,0 +1,25 @@
+Well Architected Framework  
+    - help for good architecture decisions
+    - 6 pillars
+        - Operational excellence
+        - security
+        - reliability
+        - performance efficiency
+        - cost optimization
+        - sustanability
+    - they are not something to balance, or trade-offs, they are a synergy.
+    - Well Architected tool reviews your architecture against the 6 pillars.
+
+
+AWS trusted advisor
+    - no need to install anything- high level AWS account Assessment.
+    - analyze your aws accounts and provides recommendations on 6 categories:
+        - cost optimization
+        - performance
+        - security
+        - fault tolerance
+        - service limits
+        - operational excellence
+    
+
+
