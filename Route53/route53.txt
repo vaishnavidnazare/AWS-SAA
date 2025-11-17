@@ -106,7 +106,7 @@ Multivalue Routing policy
     - Can be associated with healtchecks.
     - upto 8 healthy records are returned for each multi value query.
 
-If we use thirdy party domains we can still use Route53 by adding the NS is Route53 to the third party domain.
+If we use thirdy party domains we can still use Route53 by adding the NS in Route53 to the third party domain.
 
 We have a Route53 resolver which talks to all public , private and on internet queries.
 If we want it to answer or resolve the on-premise query then a Resolver inbound endpoint is used, to which the On premise DNS resolvers connect.

@@ -12,7 +12,7 @@ TimeSeries : Amazon TimeStream
 
 RDS
     - Need to provision RDS Instance size and EBS Volume Type & size. 
-    - Bhind the scenes, Amazon RDS uses Amazon EBS (Elastic Block Store) volumes to store the actual database data and logs.​
+    - Behind the scenes, Amazon RDS uses Amazon EBS (Elastic Block Store) volumes to store the actual database data and logs.​
     - These EBS volumes are automatically created, attached, and managed by AWS when you create an RDS instance. You do not have direct access to or management control over the EBS volumes used by RDS.
     - Support for read replicas and multi-AZ
     - Automated Backup with point in time restore feature (up to 35 days)
@@ -21,7 +21,7 @@ RDS
 
 Aurora
     - Compatible API for postgreSQL/MySQL, seperation of storage and compute.
-    - Aurora Serverless - for unpredictable / intermittent workloads., no vapacity planning.
+    - Aurora Serverless - for unpredictable / intermittent workloads., no capacity planning.
     - Aurora Global: upto 16 DB Read instances in each region , less than 1 sec for storage replication.
     - Aurora database cloning : new cluster from existing one , faster than restoring a snapshot.
 
@@ -50,7 +50,7 @@ Amazon Neptune
     - Highly available across 3 az , with upto 15 read replicas.
     - Build and run applications working with highly connected datasets - optimized for this complex and hard queries.
     - can store upto billions of relations and query the graph with milliseconds latency.
-    - Highly available withreplications across multiple AZs.
+    - Highly available with replications across multiple AZs.
     - Streams in Neptune are real-time ordered sequence of every change to your graph data.
     - Noduplicates , strict order.
     - streams data is accessible in an HTTP REST API.

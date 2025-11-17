@@ -6,9 +6,9 @@ AWS Organizations
     - pricing benefits from aggregated usage.
     - shared reserved instances and savings plans disscounts across accounts.
     - there different advantages of using AWS Organizations
-        - using tagging stndards for billing purposes
+        - using tagging standards for billing purposes
         - enable cloudtrail on all accounts; send logs to central s3 accounts.
-        - Servive control policies - applied to OU or accounts to restrict users and roles.
+        - Service control policies - applied to OU or accounts to restrict users and roles.
 
 Tag policies
     - helps you standardize tags across resources in an AWS Organization

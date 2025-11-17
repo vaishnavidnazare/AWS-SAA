@@ -15,7 +15,7 @@ Athena
 
 
 Redshift
-    - based on postgreSQL m but its not used for OLTP
+    - based on postgreSQL but its not used for OLTP
     - used for OLAP - online analytical processing.
     - 10x better performance than other data warehouses, scales to PBs of data.
     - columnar storage of data instead of row based, and parallel query engine
@@ -110,7 +110,7 @@ Lake Formation
 
 Amazon managed service for apache flink
     - Previously named : kinesis data analytics for apache flink
-    - Flink(java,Scala or SQL) is a framework or processing data streams.
+    - Flink(java,Scala or SQL) is a framework for processing data streams.
     - it allows us to run any apache flink application on a managed cluster on AWS.
     - flink does not read from amazon data firehose.
 

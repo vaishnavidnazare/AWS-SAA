@@ -6,11 +6,11 @@ Transit Gateway
     - You can peer transit gateways across regions.
     - Route tables : limits which vpc can talk with other VPC.
     - Works with Direct Connect Gateway, VPN connections.
-    - Aupports IP Multicast (not supported by any other AWS service)
+    - Supports IP Multicast (not supported by any other AWS service)
 
 ECMP (Equal-cost multi-path routing)
     - Routing strategy to allow to forward a packet over multiple best path.
-    - Use case: create multiple Site-to-Site VPN connections to increase teh bandwidth of your connection sto AWS.
+    - Use case: create multiple Site-to-Site VPN connections to increase the bandwidth of your connections to AWS.
 
 
 VPC- Traffic mirroring

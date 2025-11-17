@@ -1,6 +1,6 @@
 Internet Gateway (IGW)
     - Allow resources in a VPC to connect to the internet.
-    - it scales hprizontally and is highly available and redundant.
+    - it scales horizontally and is highly available and redundant.
     - must be created seperately from a vpc.
     - one vpc can only be attached to one gw and vice versa
     - Internet gw on their own do not allow internet access.., route tables must be edited.

@@ -4,7 +4,7 @@ NACL (Network Access Control List)
     - NACL are stateless. (seperate inbound and outbound rules)
     - security groups are stateful. (whatever accepted in is also allowed to go out)
     - NACL are like a firewall which control traffic from and to subnets.
-    - One NACL per subnet, new subnets are assigned teh Default NACL.
+    - One NACL per subnet, new subnets are assigned the Default NACL.
     - You Define NACL rules:
         - rules have a number (1-32766), higher precedence with a lower number.
         - First rule match will drive the decision.

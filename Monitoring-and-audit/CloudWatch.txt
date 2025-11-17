@@ -18,7 +18,7 @@ CloudWatch
         - api gateway
         - cloudtrail
         - route53: log DNS queries.
-    - Cloudwatch logs insights: to query the logs in cloudwatch. (not a realtime engine, just quer engine)
+    - Cloudwatch logs insights: to query the logs in cloudwatch. (not a realtime engine, just query engine)
     - Cloudwatch logs s3 export: send all logs to s3 
     - Cloudwatch logs subscriptions: get a real-time log events from cloudwatch logs for processing and analysis.we can also use subscription filter.
     - we also have cloudwatch logs aggregation to aggregrate the logs.
