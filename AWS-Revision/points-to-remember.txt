@@ -1,0 +1,11 @@
+- When we want to connect on-premise with cloud we can use direct-connect or virtual private gateway in this remember that Direct connect requires time to establish the connection.
+- To examine highly connected database , or track modifications in data , neptune database is best , which is graph database service.
+- For shared access to file data EFS is best and it also scales automatically.
+- Static content store -> Amazaon S3.
+- Amazaon Dynamo DB with On-Demand capacity model -> automatically scalable and flexible schema changes.
+- large-scale physical data transfers of upto petabytes -> snowball devices is good option.
+- Continuous monitoring solution for malicious activity -> GuardDuty
+- In case of lake-formation. if we want a fine-grained access control on row and cells level then apply data filters according to that.
+- Data in transit between an instance and an encrypted volume is also encrypted.
+- NLB doesn’t handle SSL/TLS termination. The NLB simply forwards the TCP traffic to the EC2 instances.
+- 

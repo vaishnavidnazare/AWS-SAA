@@ -1,0 +1,53 @@
+Storage is of three types - block, file and object storage.
+
+S3 (Object Storage)
+    - There is no limit to no. of objects stored in amazon S3 , but ecah object must be less than 5TB.
+    - ecah object has unique identifier as stored in bucket.
+    - the objects stored in buckets have data, metadata and key which acts as uniques identifier( object name, key, version id)
+    - Storage classes (active, IA, archived, Intelligent tiering)
+        - S3 standard - active dataset, for frequently accessed data, cost effective.
+        - S3 standard IA - data accessed less frequently , but should be highly available upon request.
+        - S3 one zone IA - infrequently access data with less cost , data loss if AZ destroyed.
+        - S3 Glacier flexible retrieval - minimum storage duration 90 days, to archive data but access it within 3-5 hourrs , expedited data is accessed in 1-5 mins.
+        - S3 Glacier deep Archive - data archived that is not accessed frequently, data archival takes minimum 12 hrs.
+        - S3 Intelligent tiering - automatically saves on storage costs.
+    - Internal region tranfers in amzon s3 doesnt cost.
+    - cost are on tranfers out of regions , gb per month and operations performed.
+    - bucket is created in a region but its name should be globally unique
+    - use multipart upload for objects over 100 MB.
+    - lifecycle rules to decide the actions for the objects in S3. (transition action, expiration action)
+    - replication rules to decide the replication of the objects (inter account, cross account, same region(SRR), cross region(CRR), single bucket, multiple buckets)
+    - Bucket security 
+        - IAM policy
+        - bucket policy
+        - encryption (data at rest, in transit)
+            - client side encryption
+            - server side encryption
+    - Moving large amounts of data into amazon S3
+        - S3 transfer acceleration - uses many Cloudfront edge locations. for large data in centralized bucket.
+        - AWS snowcone - portable, rugged and secure device for TBs of data transfer. (shipping device to AWS or use datasync)
+        - AWS snowball - physical storage to transfer large amounts of data (petabytes) between amazon s3 and onsite storage locaion faster than internet speeds.
+        - AWS snowmobile - exabyte-scale data transfer. using karge containers.
+
+
+EBS (Block Storage)
+    - Storage done in fixed sized blocks
+    - Two types
+        - Instance Store
+            - temporary storage, pre configured with instance
+        - EBS 
+            - persistence storage , can be reattached.
+            - provides data availability (auto replication within AZ), persistence, encryption, security, snapshots, flexibility.
+    - Volume types 
+        - SSD
+            - general purpose
+            - provisoned IOPS
+        - HDD
+            - throughtput optimized 
+            - Cold HDD
+    
+
+EFS (File storage)
+    - scalable shared file system
+    - Fully managed, highly available and durable, scalable, data encryption (data at rest(KMS) , data in transit(TLS))
+    
