@@ -8,4 +8,12 @@
 - In case of lake-formation. if we want a fine-grained access control on row and cells level then apply data filters according to that.
 - Data in transit between an instance and an encrypted volume is also encrypted.
 - NLB doesn’t handle SSL/TLS termination. The NLB simply forwards the TCP traffic to the EC2 instances.
+- High performance computing, high-speed, low-Latency - Lustre.
+- NetApp SnapMirror for data replication.
+- Establish cross-account access for the s3 bucket when required to share data from primary data account.
+- Gp3 volumes allow for specification of IOPS independently from storage size, can provide upto 16000 IOPS.
+- AWS KMS has external key store utilizing external external key managers.
+- AWS Datasync includes built-in verification of data integrity during transfer.
+- Amazon CloudFront is a content delivery network that caches content closer to users, which might reduce latency but is more suitable for static content delivery rather than dynamic Voice over IP communication.
+- SAML 2.0-based federation allows the business to integrate their existing Active Directory, enabling their users to access AWS resources using their current credentials without having to create separate AWS identities.
 - 
