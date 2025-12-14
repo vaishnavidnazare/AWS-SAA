@@ -16,4 +16,9 @@
 - AWS Datasync includes built-in verification of data integrity during transfer.
 - Amazon CloudFront is a content delivery network that caches content closer to users, which might reduce latency but is more suitable for static content delivery rather than dynamic Voice over IP communication.
 - SAML 2.0-based federation allows the business to integrate their existing Active Directory, enabling their users to access AWS resources using their current credentials without having to create separate AWS identities.
+- Enabling point-in-time recovery (PITR) for the DynamoDB table allows automatic backups and the ability to restore the table to any point in time within the last 35 days
+- AWS Lambda limits temporary storage to 512 MB
+- AWS Migration Hub, in conjunction with AWS Application Discovery Service, is designed to collect usage statistics and configuration information about on-premises servers
+- VPC Lattice simplifies service-to-service communication across different accounts and VPCs, providing an efficient way to manage microservices while ensuring secure HTTPS communication.
+- Amazon Forecast, which is a managed service designed for generating forecasts without the need for extensive machine learning expertise.
 - 
