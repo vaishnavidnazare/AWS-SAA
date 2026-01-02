@@ -1,24 +1,226 @@
-- When we want to connect on-premise with cloud we can use direct-connect or virtual private gateway in this remember that Direct connect requires time to establish the connection.
-- To examine highly connected database , or track modifications in data , neptune database is best , which is graph database service.
-- For shared access to file data EFS is best and it also scales automatically.
-- Static content store -> Amazaon S3.
-- Amazaon Dynamo DB with On-Demand capacity model -> automatically scalable and flexible schema changes.
-- large-scale physical data transfers of upto petabytes -> snowball devices is good option.
-- Continuous monitoring solution for malicious activity -> GuardDuty
-- In case of lake-formation. if we want a fine-grained access control on row and cells level then apply data filters according to that.
-- Data in transit between an instance and an encrypted volume is also encrypted.
-- NLB doesn’t handle SSL/TLS termination. The NLB simply forwards the TCP traffic to the EC2 instances.
+VPN Connections and Direct Connect.
+    - VPN: Quick setup needed, lower bandwidth requirements, cost-sensitive.Encrypted tunnel over public internet.
+    - Direct Connect: High bandwidth, consistent performance needed, large data transfers. Dedicated, private physical connection between your data center and AWS.
+    - You can use VPN as a backup to Direct Connect for redundancy.
+    - Virtual Private Gateway is the VPC attachment point for both.
+    - Customer Gateway represents your on-premises equipment.
+    - VPN - minutes or hours to setup
+    - Direct Connection - months to setup.
+
+Neptune (graph database)
+    -  To examine highly connected database , or track modifications in data
+
+EFS 
+    - Shared access to file data, also scales automatically.
+
+ Amazaon S3
+    - Static content store
+
+Large amounts data transfer over distance → S3 Transfer Acceleration
+Snowcone: < 8 TB, portable/edge computing needs
+Snowball: 10 TB - 80 TB, standard migrations
+Snowmobile: 10 PB+, massive data center moves
+
+AWS WAF (Web Application Firewall)
+    - protects your web applications from common web exploits(Layer 7)
+    - can be deployed on:
+        - ALB
+        - API Gateway
+        - CloudFront
+        - AppSync GraphQL API
+        - Cognito User Pool
+    - cannot be attached on NLB.
+
+AWS Shield: protect from DDoS attack
+
+Firewall Manager
+    - Manage Rules in all accounts of an AWS Organization
+
+Amazon GuardDuty
+    - Intelligent Threat discovery to protect your AWS Account.
+
+Amazon Inspector
+    - Automated Security Assessments
+    - for following resources:
+        - EC2 instances
+        - Container images push to amazon ECR
+        - Lambda functions
+    - reporting and integration with AWS Security Hub.
+
+Amazon Macie
+    - Fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+    - Macie helps identify and alert you to sensitive data , suh as personally identifiable information (PII)
+
+
 - High performance computing, high-speed, low-Latency - Lustre.
+
 - NetApp SnapMirror for data replication.
-- Establish cross-account access for the s3 bucket when required to share data from primary data account.
-- Gp3 volumes allow for specification of IOPS independently from storage size, can provide upto 16000 IOPS.
-- AWS KMS has external key store utilizing external external key managers.
+
 - AWS Datasync includes built-in verification of data integrity during transfer.
-- Amazon CloudFront is a content delivery network that caches content closer to users, which might reduce latency but is more suitable for static content delivery rather than dynamic Voice over IP communication.
+
 - SAML 2.0-based federation allows the business to integrate their existing Active Directory, enabling their users to access AWS resources using their current credentials without having to create separate AWS identities.
+
 - Enabling point-in-time recovery (PITR) for the DynamoDB table allows automatic backups and the ability to restore the table to any point in time within the last 35 days
+
 - AWS Lambda limits temporary storage to 512 MB
-- AWS Migration Hub, in conjunction with AWS Application Discovery Service, is designed to collect usage statistics and configuration information about on-premises servers
+
 - VPC Lattice simplifies service-to-service communication across different accounts and VPCs, providing an efficient way to manage microservices while ensuring secure HTTPS communication.
+
 - Amazon Forecast, which is a managed service designed for generating forecasts without the need for extensive machine learning expertise.
-- 
+
+- In automated backups of aurora the retention can be set upto 35 days only , so for longer retention period we need to use AWS backup.
+
+
+Global accelerator and CloudFront
+    - Amazon CloudFront is a content delivery network that caches content closer to users, which might reduce latency but is more suitable for static content delivery rather than dynamic Voice over IP communication. (HTTP)
+    - Global Accelerator - A network layer service that provides static anycast IP addresses. Routes traffic over AWS's private global network to optimal endpoints.(HTTP, UDP)
+
+AWS Organizations and Control Tower.
+    - Use AWS Organizations when:
+        "Centralized billing for multiple accounts" → Organizations
+        "Apply permission boundaries across accounts" → Organizations (SCPs)
+        "Volume discounts across accounts" → Organizations (consolidated billing)
+        "Need basic multi-account structure" → Organizations
+    - Use AWS Control Tower when:
+        "Set up multi-account environment following AWS best practices" → Control Tower
+        "Need automated compliance monitoring" → Control Tower (detective guardrails)
+        "Want pre-configured security baseline" → Control Tower
+        "Quickly provision new accounts with standards" → Control Tower (Account Factory)
+        "Detect drift from compliance" → Control Tower
+        "Need dashboard for governance" → Control Tower
+    - Common exam questions:
+        "Prevent all accounts from disabling CloudTrail" → SCP in Organizations (or Control Tower preventive guardrail)
+        "Automatically detect unencrypted S3 buckets" → Control Tower detective guardrail (AWS Config)
+        "Set up 50-account environment quickly with best practices" → Control Tower
+        "Share Reserved Instances across accounts" → Organizations consolidated billing
+
+AWS Budgets, Cost explorer, Cost and usage reports.
+    - Use AWS Budgets when:
+        "Get notified when spending exceeds $X" → Budgets
+        "Automatically stop EC2 instances if budget exceeded" → Budgets with Budget Actions
+        "Alert when forecasted spend will exceed threshold" → Budgets
+        "Monitor Reserved Instance utilization" → Reservation Budget
+        "Prevent cost overruns" → Budgets
+    - Use Cost Explorer when:
+        "Visualize EC2 costs by region over last 6 months" → Cost Explorer
+        "Find which service costs the most" → Cost Explorer
+        "Get RI purchase recommendations" → Cost Explorer
+        "Forecast next month's costs" → Cost Explorer
+        "Identify cost trends and anomalies" → Cost Explorer
+        "Quick analysis and reporting" → Cost Explorer
+    - Use Cost and Usage Reports when:
+        "Need detailed cost allocation by business unit (using tags)" → CUR
+        "Build custom billing dashboard in QuickSight" → CUR + Athena + QuickSight
+        "Export billing data to third-party tool" → CUR
+        "Need hourly usage data for each resource" → CUR
+        "Detailed chargeback to departments" → CUR
+        "Custom cost analysis not possible in Cost Explorer" → CUR
+
+    - Common Exam Patterns
+        Scenario: "Company wants to prevent overspending"
+        → AWS Budgets with alerts
+        Scenario: "Finance team needs to see where money is being spent"
+        → Cost Explorer for visualization
+        Scenario: "Need to allocate costs to different departments using tags"
+        → Cost and Usage Reports with cost allocation tags
+        Scenario: "Automatically take action when budget threshold reached"
+        → AWS Budgets with Budget Actions
+        Scenario: "Analyze costs and get RI recommendations"
+        → Cost Explorer
+        Scenario: "Feed billing data into external BI tool"
+        → Cost and Usage Reports to S3
+
+RPO and RTO 
+    - RTO (Recovery Time Objective):
+
+        Definition: Maximum acceptable time between service disruption and restoration
+        Question it answers: "How long can we be down?"
+        Example: RTO = 1 hour means service must be restored within 1 hour of failure
+        Impacts: Infrastructure design, automation level, costs
+
+    - RPO (Recovery Point Objective):
+
+        Definition: Maximum acceptable amount of data loss measured in time
+        Question it answers: "How much data can we afford to lose?"
+        Example: RPO = 15 minutes means you can lose at most 15 minutes of data
+        Impacts: Backup frequency, replication strategy, costs
+
+    - Backup and Restore (Slowest, Cheapest)
+    - Pilot Light (Minimal Always-On)
+    - Warm Standby (Scaled-Down Version Always Running)
+    - Multi-Site / Hot Standby (Fastest, Most Expensive)
+
+
+Geolocation and geoproximity
+    - geolocation - route traffic to the resource specified for that locations
+    - geoproximity - route traffic to the nearest resource location.
+
+RAID (Redundant Array of Independent Disks)
+    - Technology that combines multiple physical disks into a single logical unit
+    - Provides different combinations of:
+        Performance (speed)
+        Redundancy (fault tolerance)
+        Capacity (usable storage)
+    - Different RAID levels offer different trade-offs
+        RAID 0 (Striping) - Performance
+            How it works:
+            Data is striped (split) across multiple disks
+            No redundancy or fault tolerance
+            All disks work in parallel
+        
+        RAID 1 (Mirroring) - Redundancy
+            How it works:
+            Data is mirrored (duplicated) across disks
+            Exact copy on each disk
+            Provides fault tolerance
+
+        RAID 5 (Striping with Parity) - Balance [NOT recommended by AWS for EBS]
+            How it works:
+            Data striped across disks
+            Parity information distributed across all disks
+            Parity allows reconstruction if one disk fails
+
+        RAID 6 (Striping with Double Parity) - Extra Redundancy [Also recommended for EBS]
+            How it works:
+            Like RAID 5 but with double parity
+            Can survive loss of any TWO disks
+            More parity overhead
+
+        RAID 10 (1+0) - Performance + Redundancy
+            How it works:
+            Combination of RAID 1 (mirroring) and RAID 0 (striping)
+            Mirror pairs are striped
+            "Stripe of mirrors"
+
+CORS (Cross-Origin Resource Sharing)
+    - A security feature implemented by web browsers
+    - Controls whether a web page can make requests to a different domain than the one that served the page
+    - Prevents malicious websites from accessing your data
+
+In-memory database -> ElasticCache for Redis.
+In-memory DB Caching layer -> ElasticCache Memcached.
+
+AWS Data-exchange allows you to gain access to third-party datasets.
+
+Service Catalog → provisions infrastructure
+CodeDeploy → deploys applications
+Run Command → operational tasks
+OpsWorks → configuration management
+
+
+Rekognition - for videos ,images etc.
+Transcribe - speech to text.
+polly overview - text to speech.
+translate - language translation.
+textract - extract text from scan doc.
+Comprehend - NLP.
+SageMaker - to create ML models.
+
+Server-Side Encryption (SSE) - S3 encrypts data after receiving it
+Client-Side Encryption (CSE) - You encrypt data before sending to S3
+
+SSE-S3 = Default, simple, free
+SSE-KMS = Audit trail, key control, costs money
+SSE-C = You provide keys every time, HTTPS only
+Client-Side = Encrypt before upload, most control
+DSSE-KMS = Dual-layer for compliance

@@ -26,7 +26,7 @@ EC2 Instance Types
     - For instance comparison , we can use [instances.vantage.sh]
 
 
-Security Groups
+Security Groups (regional)
     - Security groups are used to control incoming and outgoing traffic to instances.
     - Security groups are stateful, meaning that if an instance sends traffic to another instance, the response traffic is allowed back in.
     - Security groups only contains allow rules, not deny rules.

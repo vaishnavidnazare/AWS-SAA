@@ -179,5 +179,5 @@ Amazon Inspector
 
 
 Amazon Macie
-    - Fully managed data security and data privacy service hat uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+    - Fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
     - Macie helps identify and alert you to sensitive data , suh as personally identifiable information (PII)

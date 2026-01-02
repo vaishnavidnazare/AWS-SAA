@@ -3,6 +3,7 @@ IAM
 
 USERS 
 - People within organization.
+- When created a user we can add alias for easy login.
 
 GROUP
 - Collection of users.
@@ -18,6 +19,7 @@ USER ACCESS
 - CLI 
     - requires access key and secret access key
     - CLI is installed on the user's machine.
+    - `aws configure`
     - 
 - SDK
     - requires access key and secret access key
@@ -40,6 +42,7 @@ IAM ROLE
 - Used to delegate access to AWS services.
 
 IAM SECURITY TOOLS
-- IAM credentials report
-- IAM access advisor
+- IAM credentials report (account-level) - All user and creadentials list
+- IAM access advisor (user-level) - service permissions granted to users and usage of service.
+
 
